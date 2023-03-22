@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 
-function CommunityPage() {
+function ChatGptPage() {
     return (
         <div>
-            rhd
+            응애dmddodddmd
         </div>
     );
 }
 
-export default CommunityPage;
+export default ChatGptPage;

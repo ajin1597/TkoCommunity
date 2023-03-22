@@ -4,6 +4,7 @@ import "./assets/fonts/CookieRunRegular.ttf"
 import { HashRouter, Link, Routes, Route } from 'react-router-dom';
 import NoticePage from './components/NoticePage';
 import CommunityPage from './components/CommunityPage';
+import ChatGptPage from './components/ChatGptPage';
 
 
 function App() {
@@ -17,46 +18,39 @@ function App() {
             <TkoLogo className='w-[168px]' />
           </div>
 
-          <div id='상단바 가운데' className='bg-yellow-200 flex w-[55%] justify-around'>
+          <div id='상단바 가운데' className='w-[55%]'>
             <nav>
-              <ul>
+              <ul className='flex justify-around'>
                 <li>
-                  <Link to="/NoticePage">공지사항</Link>
+                  <Link to="/NoticePage" className='hover:font-cookie'>공지사항</Link>
                 </li>
                 <li>
-                  <Link to="/CommunityPage">커뮤니티</Link>
+                  <Link to="/CommunityPage" className='hover:font-cookie'>커뮤니티</Link>
+                </li>
+                <li>
+                  <Link to="/ChatGptPage" className='hover:font-cookie'>챗봇검색</Link>
                 </li>
               </ul>
             </nav>
             {/* <div className='bg-white hover:font-cookie'>공지사항</div> */}
-            <div className='bg-white hover:font-cookie'>커뮤니티</div>
-            <div className='bg-white hover:font-cookie'>챗봇검색</div>
+            {/* <div className='bg-white hover:font-cookie'>커뮤니티</div> */}
+            {/* <div className='bg-white hover:font-cookie'>챗봇검색</div> */}
           </div>
 
-          <div id='상단바 오른쪽' className='bg-green-200 flex justify-end items-center w-[25%]'>
+          <div id='상단바 오른쪽' className='flex justify-end items-center w-[25%]'>
             <div id='로그인' className='flex justify-end  border-r-2 border-r-black pr-2 hover:font-cookie'>로그인</div>
             <div id='회원가입' className='pl-2 hover:font-cookie w-[100px]'>회원가입</div>
           </div>
 
         </div>
 
-        <div id='body' className='m-4 bg-red-200'>
-          <div id='레이아웃 클릭 페이지' className=''>asd</div>
-          <div>asdsadsd</div>
-          <div>asdsadsd</div>
-          <div>asdsadsd</div>
-          <div>asdsadsd</div>
-          <div>asdsadsd</div>
-
-
-
-
-
+        <div id='body' className='m-4 bg-gray-100'>
+          <Routes>
+            <Route path='/NoticePage' element={<NoticePage />} />
+            <Route path='/CommunityPage' element={<CommunityPage />} />
+            <Route path='ChatGptPage' element={<ChatGptPage />} />
+          </Routes>
         </div>
-        <Routes>
-          <Route path='/NoticePage' element={<NoticePage />} />
-          <Route path='/CommunityPage' element={<CommunityPage />} />
-        </Routes>
 
 
 
