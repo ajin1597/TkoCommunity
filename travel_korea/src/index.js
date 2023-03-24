@@ -19,16 +19,7 @@ root.render(
       <Route path="ChatGptPage" element={<ChatGptPage />} />
       <Route path="Login" element={<Login />} />
       {/* <Route path="LogIn" element={<ChatGptPage />} /> */}
-      {/* <Route
-        path="만들어놔
-      기능 생각하지말고
-      외관만
-      map 리스트만들어서 돌려
-      let tlqkf =[1,2,3,4,4]
-      tlqkf.map(()=>{})
-      "
-        element={<ChatGptPage />}
-      /> */}
+
     </Routes>
   </BrowserRouter>
 );

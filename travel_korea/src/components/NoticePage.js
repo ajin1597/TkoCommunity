@@ -1,8 +1,15 @@
 import { Link } from "react-router-dom";
 import Header from "../Layout/Header";
 import Copyright from "../Layout/Copyright";
+import { useState } from "react";
 
-function NoticePage() {
+const NoticePage = () => {
+
+    const [titleNotic, setTitleNotic] = useState([]);
+    const [userNotic, setUserNotic] = useState([]);
+    const [dateNotic, setDateNotic] = useState([]);
+    const [numNotic, setNumNotic] = useState([]);
+
     return (
         <>
             <Header />
