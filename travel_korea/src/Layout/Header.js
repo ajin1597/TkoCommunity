@@ -8,7 +8,21 @@ const Header = () => {
     return (
         <div id="상단바" className="flex justify-between items-center bg-white h-[65px] text-xl border-b-2 border-b-gray-300">
             <div id="상단바 왼쪽" className="flex justify-around w-[20%] bg-white">
-                <TkoLogo className="w-[168px]" />
+                <nav>
+                    <ul>
+                        <li>
+                            <Link
+                                to="/"
+                                className={`hover:font-cookie ${location.pathname === "/"
+                                    ? "font-cookie border-b-2 border-black"
+                                    : ""
+                                    }`}
+                            >
+                                <TkoLogo className="w-[168px]" />
+                            </Link>
+                        </li>
+                    </ul>
+                </nav>
             </div>
 
             <div id="상단바 가운데" className="w-[55%]">

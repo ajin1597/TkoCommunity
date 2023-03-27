@@ -10,8 +10,8 @@ function App() {
         <div id="body" className="m-4 bg-gray-100">
           body
         </div>
-        <Copyright />
       </div>
+      <Copyright />
     </>
   );
 }
