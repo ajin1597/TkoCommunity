@@ -1,14 +1,19 @@
 import { Link } from "react-router-dom";
 import Header from "../Layout/Header";
 import Copyright from "../Layout/Copyright";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const NoticePage = () => {
 
-    const [titleNotic, setTitleNotic] = useState([]);
-    const [userNotic, setUserNotic] = useState([]);
-    const [dateNotic, setDateNotic] = useState([]);
-    const [numNotic, setNumNotic] = useState([]);
+    const a = [1, 2, 3, 4, 5];
+    const b = ['a', 'b', 'c', 'd', 'e'];
+
+
+
+    // const [titleNotic, setTitleNotic] = useState([]);
+    // const [userNotic, setUserNotic] = useState([]);
+    // const [dateNotic, setDateNotic] = useState([]);
+    // const [numNotic, setNumNotic] = useState([]);
 
     return (
         <>
@@ -24,12 +29,38 @@ const NoticePage = () => {
                         <div className="w-[15%] flex justify-center">작성자</div>
                         <div className="w-[15%] flex justify-center">작성날짜</div>
                     </div>
-                    <div id="공지사항 게시물 포멧" className="flex justify-between w-[100%] bg-blue-300">
+                    <div id="공지사항 게시물 포멧" className="w-[100%] bg-blue-300">
                         {/* 밑에 포멧형식으로 map돌리기 */}
-                        <div id="게시물번호" className="w-[10%] flex justify-center ">1.</div>
-                        <div id="제목글" className="w-[60%] flex justify-start pr-[500px] bg-purple-200 ">집가고싶다</div>
-                        <div id="작성자" className="w-[15%] flex justify-center ">이진우</div>
-                        <div id="작성시간" className="w-[15%] flex justify-center ">2023.03.23</div>
+
+                        {a.map((ele, idx) => {
+                            return (
+                                <div key={idx} className="flex "
+                                // onClick={qwe}
+                                >
+                                    <div id="게시물번호" className=" bg-red-50 w-[10%] flex justify-center">{ele}</div>
+                                    <div id="제목글" className=" bg-red-100 w-[60%] flex justify-center">{ele}</div>
+                                    <div id="작성자" className=" bg-red-200 w-[15%] flex justify-center">{ele}</div>
+                                    <div id="작성시간" className=" bg-red-300 w-[15%] flex justify-center">{ele}</div>
+                                </div>
+                            );
+                            // <div>
+                            //         <div id="게시물번호" className="w-[10%] flex justify-center ">{ele}</div>
+                            //         <div id="제목글" className="w-[60%] flex justify-start pr-[500px] bg-purple-200 ">{ele}</div>
+                            //         <div id="작성자" className="w-[15%] flex justify-center ">{ele}</div>
+                            //         <div id="작성시간" className="w-[15%] flex justify-center ">{ele}</div>
+                            //     </div>
+
+
+                        })}
+                        {b.map((b, idx) => {
+                            return (
+                                <div>{b}</div>
+                            );
+                        })}
+
+
+
+
                     </div>
                 </div>
 

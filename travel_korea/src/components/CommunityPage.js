@@ -6,7 +6,7 @@ function CommunityPage() {
     return (
         <>
             <Header />
-            <div>rhd</div>
+            <div>rhdsss</div>
             <Copyright />
         </>
     );
