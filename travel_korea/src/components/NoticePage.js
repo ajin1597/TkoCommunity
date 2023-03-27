@@ -52,11 +52,11 @@ const NoticePage = () => {
 
 
                         })}
-                        {b.map((b, idx) => {
+                        {/* {b.map((b, idx) => {
                             return (
                                 <div>{b}</div>
                             );
-                        })}
+                        })} */}
 
 
 
