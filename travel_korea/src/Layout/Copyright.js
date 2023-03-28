@@ -7,10 +7,14 @@ function Copyright() {
             <div className="bg-red-200 ">
                 사이트정보(이름, 번호)
             </div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
+            <div>apdlsvpdlwl</div>
+            <div>apdlsvpdlwl</div>
+            <div>apdlsvpdlwl</div>
+            <div>apdlsvpdlwl</div>
+            <div>apdlsvpdlwl</div>
+            <div>apdlsvpdlwl</div>
+
+
         </div>
     );
 };
