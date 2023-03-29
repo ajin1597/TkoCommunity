@@ -6,14 +6,26 @@ import { useEffect, useState } from "react";
 const NoticePage = () => {
 
     const a = [1, 2, 3, 4, 5];
-    const b = ['a', 'b', 'c', 'd', 'e'];
-
-
 
     // const [titleNotic, setTitleNotic] = useState([]);
     // const [userNotic, setUserNotic] = useState([]);
     // const [dateNotic, setDateNotic] = useState([]);
     // const [numNotic, setNumNotic] = useState([]);
+
+    useEffect(() => {
+        fetch("/api/")
+            .then((res) => res.json())
+            .then((json) => {
+                console.log(json);
+
+                // setTitleNotic(json.)
+                // setUserNotic(json.)
+                // setDateNotic(json.)
+                // setNumNotic(json.)
+
+            });
+    }, []);
+
 
     return (
         <>
@@ -37,10 +49,11 @@ const NoticePage = () => {
                                 <div key={idx} className="flex "
                                 // onClick={qwe}
                                 >
-                                    <div id="게시물번호" className=" bg-red-50 w-[10%] flex justify-center">{ele}</div>
-                                    <div id="제목글" className=" bg-red-100 w-[60%] flex justify-center">{ele}</div>
-                                    <div id="작성자" className=" bg-red-200 w-[15%] flex justify-center">{ele}</div>
-                                    <div id="작성시간" className=" bg-red-300 w-[15%] flex justify-center">{ele}</div>
+                                    <div id="게시물번호" className=" bg-red-50 w-[10%] flex justify-center">{ele}{/* state변수넣기 */}</div>
+                                    <div id="제목글" className=" bg-red-100 w-[60%] flex justify-center">{ele}{/* state변수넣기 */}</div>
+                                    <div id="작성자" className=" bg-red-200 w-[15%] flex justify-center">{ele}{/* state변수넣기 */}</div>
+                                    <div id="작성시간" className=" bg-red-300 w-[15%] flex justify-center">{ele}{/* state변수넣기 */}</div>
+
                                 </div>
                             );
                             // <div>
@@ -52,11 +65,6 @@ const NoticePage = () => {
 
 
                         })}
-                        {/* {b.map((b, idx) => {
-                            return (
-                                <div>{b}</div>
-                            );
-                        })} */}
 
 
 

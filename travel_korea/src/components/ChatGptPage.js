@@ -6,7 +6,7 @@ function ChatGptPage() {
     return (
         <>
             <Header />
-            <div>응애dmddodddmd</div>
+            <div>chatGPT</div>
             <Copyright />
         </>
     );
