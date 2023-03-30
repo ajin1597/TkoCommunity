@@ -5,27 +5,35 @@ import { useEffect, useState } from "react";
 
 const NoticePage = () => {
 
-    const a = [1, 2, 3, 4, 5];
+    // const a = [1, 2, 3, 4, 5];
 
-    // const [titleNotic, setTitleNotic] = useState([]);
-    // const [userNotic, setUserNotic] = useState([]);
-    // const [dateNotic, setDateNotic] = useState([]);
-    // const [numNotic, setNumNotic] = useState([]);
 
+    // const [numNoticPost, setNumNoticPost] = useState([]);
+    // const [titleNoticPost, setTitleNoticPost] = useState([]);
+    // const [contentsNoticPost, setContentsNoticPost] = useState([]);
+    // const [userNoticPost, setUserNoticPost] = useState([]);
+    // const [dateNoticPost, setDateNoticPost] = useState([]);
+    const [noticData, setNoticData] = useState([]);
+
+
+    // const arr = [numNoticPost
+    //     , titleNoticPost
+    //     , contentsNoticPost
+    //     , userNoticPost
+    //     , dateNoticPost]
+
+    // "http://180.70.15.132:9999/noticepage"
+    // "http://172.16.37.191:9999/noticepage"
+    console.log("3213123")
     useEffect(() => {
-        fetch("/api/")
+        fetch("http://172.16.38.135:9999/noticepage")
             .then((res) => res.json())
             .then((json) => {
-                console.log(json);
-
-                // setTitleNotic(json.)
-                // setUserNotic(json.)
-                // setDateNotic(json.)
-                // setNumNotic(json.)
-
+                // console.log(json);
+                setNoticData(json);
             });
     }, []);
-
+    console.log(noticData);
 
     return (
         <>
@@ -42,36 +50,21 @@ const NoticePage = () => {
                         <div className="w-[15%] flex justify-center">작성날짜</div>
                     </div>
                     <div id="공지사항 게시물 포멧" className="w-[100%] bg-blue-300">
-                        {/* 밑에 포멧형식으로 map돌리기 */}
-
-                        {a.map((ele, idx) => {
+                        {noticData.map((ele) => {
                             return (
-                                <div key={idx} className="flex "
+                                <div className="flex "
                                 // onClick={qwe}
                                 >
-                                    <div id="게시물번호" className=" bg-red-50 w-[10%] flex justify-center">{ele}{/* state변수넣기 */}</div>
-                                    <div id="제목글" className=" bg-red-100 w-[60%] flex justify-center">{ele}{/* state변수넣기 */}</div>
-                                    <div id="작성자" className=" bg-red-200 w-[15%] flex justify-center">{ele}{/* state변수넣기 */}</div>
-                                    <div id="작성시간" className=" bg-red-300 w-[15%] flex justify-center">{ele}{/* state변수넣기 */}</div>
-
+                                    {console.log(ele)}
+                                    <div id="게시물번호" className=" bg-red-50 w-[10%] flex justify-center">{ele.num}</div>
+                                    <div id="제목글" className=" bg-red-100 w-[60%] flex justify-center">{ele.title}</div>
+                                    <div id="작성자" className=" bg-red-200 w-[15%] flex justify-center">{ele.writer}</div>
+                                    <div id="작성시간" className=" bg-red-300 w-[15%] flex justify-center">{ele.date}</div>
                                 </div>
                             );
-                            // <div>
-                            //         <div id="게시물번호" className="w-[10%] flex justify-center ">{ele}</div>
-                            //         <div id="제목글" className="w-[60%] flex justify-start pr-[500px] bg-purple-200 ">{ele}</div>
-                            //         <div id="작성자" className="w-[15%] flex justify-center ">{ele}</div>
-                            //         <div id="작성시간" className="w-[15%] flex justify-center ">{ele}</div>
-                            //     </div>
-
-
                         })}
-
-
-
-
                     </div>
                 </div>
-
             </div>
             <Copyright />
         </>
