@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import Pagination from "react-js-pagination";
 import "./Paging.css";
 
-const Paging = ({ totalItemsCount, page, itemsCountPer, pageRangeDisplayed, handlePageChange }) => {
+const Paging = ({ page, itemsCountPer, totalItemsCount, pageRangeDisplayed, handlePageChange }) => {
 
+    // { console.log(totalItemsCount + 1121321231) }
     return (
         <Pagination
             activePage={page} //  현재 페이지
