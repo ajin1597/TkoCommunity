@@ -7,7 +7,7 @@ const Paging = ({ page, itemsCountPer, totalItemsCount, pageRangeDisplayed, hand
     // { console.log(totalItemsCount + 1121321231) }
     return (
         <Pagination
-            activePage={page} //  현재 페이지
+            activePage={page} //  선택한 페이지
             itemsCountPerPage={itemsCountPer} //  한 페이지당 보여줄 리스트 아이템의 개수
             totalItemsCount={totalItemsCount ? totalItemsCount : 0} //  총 아이템의 개수
             pageRangeDisplayed={pageRangeDisplayed} //  Paginator 내에서 보여줄 페이지의 범위
