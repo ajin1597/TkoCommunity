@@ -1,39 +1,32 @@
 import { Link } from "react-router-dom";
 import Header from "../Layout/Header";
 import Copyright from "../Layout/Copyright";
+import Paging from "./Paging";
 import { useEffect, useState } from "react";
 
 const NoticePage = () => {
 
-    // const a = [1, 2, 3, 4, 5];
+    const [noticData, setNoticData] = useState([]); // api에서 받아온 데이터 저장
+    const [page, setPage] = useState(1); // 현제 페이지
+    const handlePageChange = (page) => { setPage(page) } // 페이지헨들러
+    const [pageItemsCountPer] = useState(10); // 페이지 내부 리스트 갯수
+    const [pageRangeDisplayed] = useState(5); // paginator에서 보여줄 페이지 범위
+    const indexOfLastList = page * pageItemsCountPer; // 이전페이지
+    const indexOfFirstList = indexOfLastList - pageItemsCountPer; // 다음페이지
+    const [currentList, setCurrentList] = useState([]);
 
-
-    // const [numNoticPost, setNumNoticPost] = useState([]);
-    // const [titleNoticPost, setTitleNoticPost] = useState([]);
-    // const [contentsNoticPost, setContentsNoticPost] = useState([]);
-    // const [userNoticPost, setUserNoticPost] = useState([]);
-    // const [dateNoticPost, setDateNoticPost] = useState([]);
-    const [noticData, setNoticData] = useState([]);
-
-
-    // const arr = [numNoticPost
-    //     , titleNoticPost
-    //     , contentsNoticPost
-    //     , userNoticPost
-    //     , dateNoticPost]
-
-    // "http://180.70.15.132:9999/noticepage"
-    // "http://172.16.37.191:9999/noticepage"
-    console.log("3213123")
+    // "http://180.70.15.132:9999/noticepage" //{종훈이집}
+    // "http://172.16.37.191:9999/noticepage" 
+    // "http://172.16.38.135:9999/noticepage" //436
     useEffect(() => {
-        fetch("http://172.16.38.135:9999/noticepage")
+        fetch("http://180.70.15.132:9999/noticepage")
             .then((res) => res.json())
             .then((json) => {
-                // console.log(json);
                 setNoticData(json);
+                // console.log(json)
+                setCurrentList(noticData.slice(indexOfFirstList, indexOfLastList))
             });
-    }, []);
-    console.log(noticData);
+    }, [indexOfFirstList, indexOfLastList, page]);
 
     return (
         <>
@@ -50,9 +43,9 @@ const NoticePage = () => {
                         <div className="w-[15%] flex justify-center">작성날짜</div>
                     </div>
                     <div id="공지사항 게시물 포멧" className="w-[100%] bg-blue-300">
-                        {noticData.map((ele) => {
+                        {currentList.reverse().map((ele, idx) => {
                             return (
-                                <div className="flex "
+                                <div key={idx} className="flex"
                                 // onClick={qwe}
                                 >
                                     {console.log(ele)}
@@ -64,6 +57,7 @@ const NoticePage = () => {
                             );
                         })}
                     </div>
+                    <Paging totalItemsCount={noticData.length} page={page} itemsCountPer={pageItemsCountPer} pageRangeDisplayed={pageRangeDisplayed} handlePageChange={handlePageChange} />
                 </div>
             </div>
             <Copyright />
