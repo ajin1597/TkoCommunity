@@ -1,19 +1,26 @@
-import { json, Link } from "react-router-dom";
+import { json, Link, useLocation, useParams } from "react-router-dom";
 import Header from "../Layout/Header";
 import Copyright from "../Layout/Copyright";
-import Paging from "./Paging";
+import Paging from "./Pagination/Paging";
 import { useEffect, useState } from "react";
 
 const NoticePage = () => {
-
     const [noticData, setNoticData] = useState([]); // api에서 받아온 데이터 저장
     const [listCount, setListCount] = useState(); // 보여줄 리스트
     const [page, setPage] = useState(1); // 현제 페이지 (초기값 1)
     const handlePageChange = (page) => { setPage(page) } // 페이지헨들러 함수
     const [pageItemsCountPer] = useState(10); // 페이지 내부 리스트 갯수
     const [pageRangeDisplayed] = useState(5); // paginator에서 보여줄 페이지 범위
+
     // const indexOfLastList = page * pageItemsCountPer; // 이전페이지
     // const indexOfFirstList = indexOfLastList - pageItemsCountPer; // 다음페이지
+    // const { page } = useParams();
+    // const clickListItem = () => {
+
+    // };
+
+    const location = useLocation();
+    console.log(location)
 
     // "http://180.70.15.132:9999/noticepage" //{종훈이집}
     // "http://172.16.37.191:9999/noticepage" 
@@ -32,7 +39,7 @@ const NoticePage = () => {
             .then((res) => res.json())
             .then((json) => {
 
-                // console.log(json)
+                console.log(json)
                 setNoticData(json.mainResult)
             });
     }, [page]);
@@ -54,21 +61,25 @@ const NoticePage = () => {
                     <div id="공지사항 게시물 포멧" className="w-[100%] bg-blue-300">
                         {noticData.map((notic, idx) => {
                             return (
-                                <div key={idx} className="flex"
+                                <div key={idx}
                                 // onClick={qwe}
                                 >
-                                    {/* {console.log(ele)} */}
-                                    <div id="게시물번호" className=" bg-red-50 w-[10%] flex justify-center">{notic.num}</div>
-                                    <div id="제목글" className=" bg-red-100 w-[60%] flex justify-center">{notic.title}</div>
-                                    <div id="작성자" className=" bg-red-200 w-[15%] flex justify-center">{notic.writer}</div>
-                                    <div id="작성시간" className=" bg-red-300 w-[15%] flex justify-center">{notic.date}</div>
+                                    <nav>
+                                        <ul>
+                                            <li>
+                                                <Link to={"/SingleNoticPage"} state={{ noticData: notic }} className="flex" >
+                                                    <div id="게시물번호" className=" bg-red-50 w-[10%] flex justify-center">{notic.num}</div>
+                                                    <div id="제목글" className=" bg-red-100 w-[60%] flex justify-center">{notic.title}</div>
+                                                    <div id="작성자" className=" bg-red-200 w-[15%] flex justify-center">{notic.writer}</div>
+                                                    <div id="작성시간" className=" bg-red-300 w-[15%] flex justify-center">{notic.date}</div>
+                                                </Link>
+                                            </li>
+                                        </ul>
+                                    </nav>
                                 </div>
                             );
                         })}
                     </div>
-                    {/* {console.log(typeof (listCount))} */}
-                    {/* {console.log(typeof (300) + 123)} */}
-
                     <Paging totalItemsCount={listCount} page={page} itemsCountPer={pageItemsCountPer} pageRangeDisplayed={pageRangeDisplayed} handlePageChange={handlePageChange} />
                 </div>
             </div>

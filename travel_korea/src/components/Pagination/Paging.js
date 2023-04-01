@@ -4,7 +4,6 @@ import "./Paging.css";
 
 const Paging = ({ page, itemsCountPer, totalItemsCount, pageRangeDisplayed, handlePageChange }) => {
 
-    // { console.log(totalItemsCount + 1121321231) }
     return (
         <Pagination
             activePage={page} //  선택한 페이지
