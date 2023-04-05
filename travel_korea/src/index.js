@@ -10,6 +10,7 @@ import CommunityPage from "./components/CommunityPage";
 import ChatGptPage from "./components/ChatGptPage";
 import Login from "./components/Login";
 import SingleNoticPage from "./components/SingleNoticPage";
+import Paging from "./components/Pagination/Paging";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -17,10 +18,16 @@ root.render(
     <Routes>
       <Route path="/" element={<App />} />
       <Route path="NoticePage" element={<NoticePage />} />
+
+      <Route path="NoticePage" element={<NoticePage />} >
+        <Route path="NoticePage/:page" element={<Paging />}></Route>
+      </Route>
+
+      <Route path="SingleNoticPage" element={<SingleNoticPage />} />
       <Route path="CommunityPage" element={<CommunityPage />} />
       <Route path="ChatGptPage" element={<ChatGptPage />} />
       <Route path="Login" element={<Login />} />
-      <Route path="SingleNoticPage" element={<SingleNoticPage />} />
+
       {/* <Route path="LogIn" element={<ChatGptPage />} /> */}
 
     </Routes>

@@ -1,8 +1,30 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Pagination from "react-js-pagination";
 import "./Paging.css";
+import { useParams, useLocation, useNavigate } from "react-router-dom";
 
 const Paging = ({ page, itemsCountPer, totalItemsCount, pageRangeDisplayed, handlePageChange }) => {
+
+    // const location = useLocation();
+    // console.log(location.search);
+
+    // const pages = location.state.page;
+    // pages = useParams();
+    // const navigate = useNavigate();
+    // useEffect(() => {
+    //     console.log(navigate);
+    //     navigate('/NoticePage', {
+    //         state: {
+    //             page: page,
+    //         }
+    //     });
+    // }, [page, itemsCountPer, totalItemsCount, pageRangeDisplayed, handlePageChange])
+
+
+    // const navigate = useNavigate();
+    // console.log(navigate);
+    //  X    = useParams();
+    // console.log(page);
 
     return (
         <Pagination

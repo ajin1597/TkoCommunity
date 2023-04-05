@@ -16,11 +16,6 @@ function App() {
           <div>apdlsvpdlwl</div>
           <div>apdlsvpdlwl</div>
           <div>apdlsvpdlwl</div>
-          <div>apdlsvpdlwl</div>
-          <div>apdlsvpdlwl</div>
-          <div>apdlsvpdlwl</div>
-          <div>apdlsvpdlwl</div>
-
         </div>
       </div>
       <Copyright />
