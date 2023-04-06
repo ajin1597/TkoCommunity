@@ -18,26 +18,13 @@ const NoticePage = () => {
 
     // const indexOfLastList = page * pageItemsCountPer; // 이전페이지
     // const indexOfFirstList = indexOfLastList - pageItemsCountPer; // 다음페이지
-    // const { page } = useParams();
-    // const clickListItem = () => {
-
-    // };
-    // console.log(typeof (page))
-
-    // const click = () => {
-    //     console.log(page)
-    //     console.log(navigate);
-
-
-    // }
-
 
     // "http://180.70.15.132:9999/noticepage" //{종훈이집}
     // "http://172.16.37.241:9999/noticepage" 
     // "http://172.16.38.135:9999/noticepage" //436
 
     useEffect(() => { //전체 데이터 갯수
-        fetch(`http://172.16.36.62:9998/Notice/count`)
+        fetch(`http://172.16.38.121:9998/Notice/count`)
             .then((res) => res.json())
             .then((json) => {
                 setListCount(json.count[0].count)
@@ -45,13 +32,15 @@ const NoticePage = () => {
     }, [])
 
     useEffect(() => { // 해당 페이지 번호의 데이터 , 페이지가 선택될때마다 랜더링
-        fetch(`http://172.16.36.62:9998/Notice/${page}`)
+        fetch(`http://172.16.38.121:9998/Notice/${page}`)
             .then((res) => res.json())
             .then((json) => {
                 // console.log(json);
                 setNoticData(json.mainResult)
             });
     }, [page]);
+
+    // onClick 함수 만들어서 해당 게시물의
 
     const location = useLocation();
     console.log(location);

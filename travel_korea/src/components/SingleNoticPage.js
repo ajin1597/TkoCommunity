@@ -14,23 +14,47 @@ const SingNoticPage = () => {
     const [currentPost, setCurrentPost] = useState(); // 현재게시물
     const [nextPost, setNextPost] = useState(); // 다음게시물
 
+    // const 
+
     // const noticContent = noticProperties.
 
     console.log(noticProperties);
     console.log(location);
 
     useEffect(() => {
-        fetch(`http://172.16.36.62:9998/NoticeDetail/${noticProperties}`)
+        fetch(`http://172.16.38.121:9998/NoticeDetail/${noticProperties}`)
             .then((res) => res.json())
             .then((json) => {
-                console.log(json.noticeDetail);
-
+                const singleNoticData = json.noticeDetail;
+                console.log(singleNoticData[1].num);
                 // setData(json.noticeDetail[0]);
-                setPreviousPost(json.noticeDetail[0]);
-                setCurrentPost(json.noticeDetail[1]);
-                setNextPost(json.noticeDetail[2]);
 
-                // setListCount(json.count[0].count)
+                // { singleNoticData[0] ? { setPreviousPost() } : null }
+
+                const now = (json) => {
+                    setPreviousPost(json.noticeDetail[0]);
+                    setCurrentPost(json.noticeDetail[1]);
+                    setNextPost(json.noticeDetail[2]);
+                }
+
+                const first = (json) => {
+                    setCurrentPost(json.noticeDetail[0]);
+                    setNextPost(json.noticeDetail[1]);
+                }
+
+                const end = (json) => {
+                    setPreviousPost(json.noticeDetail[0]);
+                    setCurrentPost(json.noticeDetail[1]);
+                }
+
+                const a = () => {
+                    singleNoticData[2].num ? now
+                        : (singleNoticData[1].num === 1) ? end
+                            : (singleNoticData[0].num + singleNoticData[1].num > 3) ? first
+                                : null
+                }
+
+                a();
             })
     }, [noticProperties])
 
@@ -53,8 +77,8 @@ const SingNoticPage = () => {
                 </div>
                 <div className="mt-8">{currentPost.contents}</div>
                 <div className="border-t-2 border-t-black mt-8 pt-2">
-                    <div id="이전게시물">이전{previousPost.contents} </div>
-                    <div id="다음게시물">다음{nextPost.contents}</div>
+                    {previousPost ? <div id="이전게시물">이전{previousPost.date} </div> : <div>첫 번째 게시물입니다</div>}
+                    {nextPost ? <div id="다음게시물">다음{nextPost.date}</div> : <div>마지막 게시물입니다</div>}
                     <div id="뒤로가기" className="mt-3"> 목록으로</div>
                 </div>
             </div> : null}
