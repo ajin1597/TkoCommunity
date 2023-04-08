@@ -26,41 +26,62 @@ const SingNoticPage = () => {
             .then((res) => res.json())
             .then((json) => {
                 const singleNoticData = json.noticeDetail;
-                console.log(singleNoticData[1].num);
-                // setData(json.noticeDetail[0]);
+                console.log(singleNoticData);
+                setData(json.noticeDetail);
 
                 // { singleNoticData[0] ? { setPreviousPost() } : null }
 
-                const now = (json) => {
-                    setPreviousPost(json.noticeDetail[0]);
-                    setCurrentPost(json.noticeDetail[1]);
-                    setNextPost(json.noticeDetail[2]);
-                }
+                // const now = (json) => {
+                // setPreviousPost(json.noticeDetail[0]);
+                // setCurrentPost(json.noticeDetail[1]);
+                // setNextPost(json.noticeDetail[2]);
+                // }
+                // 
+                // const first = (json) => {
+                // setCurrentPost(json.noticeDetail[0]);
+                // setNextPost(json.noticeDetail[1]);
+                // }
+                // 
+                // const end = (json) => {
+                // setPreviousPost(json.noticeDetail[0]);
+                // setCurrentPost(json.noticeDetail[1]);
+                // }
+                // 
 
-                const first = (json) => {
-                    setCurrentPost(json.noticeDetail[0]);
-                    setNextPost(json.noticeDetail[1]);
-                }
-
-                const end = (json) => {
-                    setPreviousPost(json.noticeDetail[0]);
-                    setCurrentPost(json.noticeDetail[1]);
-                }
-
-                const a = () => {
-                    singleNoticData[2].num ? now
-                        : (singleNoticData[1].num === 1) ? end
-                            : (singleNoticData[0].num + singleNoticData[1].num > 3) ? first
-                                : null
-                }
-
-                a();
+                // 
+                // a();
             })
     }, [noticProperties])
 
 
+    // const SingleData = () => {
+    // return (
+    // data[2].num ? (
+    // setPreviousPost(data[0]),
+    // setCurrentPost(data[1]),
+    // setNextPost(data[2])
+    // ) : data[1].num === 1 ? end 
+    // : data[0].num + data[1].num > 3 ? first
+    // : null
+    // )
+    // };
 
+    SingleData();
+    // console.log(data[0])
 
+    // data.map((ele, idx) => {
+    //     console.log(ele)
+    // });
+
+    // data.map((ele, idx) => {
+
+    // console.log(ele);
+    // singleNoticData[2].num ? now
+    //     : (singleNoticData[1].num === 1) ? end
+    //         : (singleNoticData[0].num + singleNoticData[1].num > 3) ? first
+    //             : null
+
+    // });
 
     return (
         <>
