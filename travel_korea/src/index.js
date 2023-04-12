@@ -20,7 +20,7 @@ root.render(
       <Route path="NoticePage" element={<NoticePage />} />
 
       <Route path="NoticePage" element={<NoticePage />} >
-        {/* <Route path="NoticePage/:page" element={<Paging />}></Route> */}
+        <Route path="NoticePage/:page" element={<Paging />}></Route>
       </Route>
 
       <Route path="SingleNoticPage" element={<SingleNoticPage />} />

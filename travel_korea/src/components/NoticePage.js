@@ -15,7 +15,7 @@ const NoticePage = () => {
     // const [searchParams, setSearchParams] = useSearchParams();
     // page = searchParams.get("page");
     // page = useParams();
-
+    // console.log(page)
     // const indexOfLastList = page * pageItemsCountPer; // 이전페이지
     // const indexOfFirstList = indexOfLastList - pageItemsCountPer; // 다음페이지
 
@@ -24,7 +24,7 @@ const NoticePage = () => {
     // "http://172.16.38.135:9999/noticepage" //436
 
     useEffect(() => { //전체 데이터 갯수
-        fetch(`http://172.16.38.121:9998/Notice/count`)
+        fetch(`http://172.16.38.249:9998/Notice/count`)
             .then((res) => res.json())
             .then((json) => {
                 setListCount(json.count[0].count)
@@ -32,10 +32,11 @@ const NoticePage = () => {
     }, [])
 
     useEffect(() => { // 해당 페이지 번호의 데이터 , 페이지가 선택될때마다 랜더링
-        fetch(`http://172.16.38.121:9998/Notice/${page}`)
+        fetch(`http://172.16.38.249:9998/Notice/${page}`)
             .then((res) => res.json())
             .then((json) => {
-                // console.log(json);
+                console.log(json);
+                // let { pageIdx } = useParams();
                 setNoticData(json.mainResult)
             });
     }, [page]);

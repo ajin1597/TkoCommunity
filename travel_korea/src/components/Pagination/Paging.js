@@ -5,11 +5,21 @@ import { useParams, useLocation, useNavigate } from "react-router-dom";
 
 const Paging = ({ page, itemsCountPer, totalItemsCount, pageRangeDisplayed, handlePageChange }) => {
 
+    // const [pages, setPages] = useState(page);
+
+    // useEffect(() => { //전체 데이터 갯수
+    // setPages(page);
+    // pages = useParams();
+    // }, [page])
+    // let { page } = useParams();
+    // console.log(params)
+    // console.log(page)
     // const location = useLocation();
     // console.log(location.search);
 
     // const pages = location.state.page;
-    // pages = useParams();
+    // page = useParams();
+    // console.log(typeof (handlePageChange))
     // const navigate = useNavigate();
     // useEffect(() => {
     //     console.log(navigate);

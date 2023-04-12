@@ -22,7 +22,7 @@ const SingNoticPage = () => {
     console.log(location);
 
     useEffect(() => {
-        fetch(`http://172.16.38.121:9998/NoticeDetail/${noticProperties}`)
+        fetch(`http://172.16.38.249:9998/NoticeDetail/${noticProperties}`)
             .then((res) => res.json())
             .then((json) => {
                 const singleNoticData = json.noticeDetail;
@@ -66,7 +66,7 @@ const SingNoticPage = () => {
     // )
     // };
 
-    SingleData();
+    // SingleData();
     // console.log(data[0])
 
     // data.map((ele, idx) => {
