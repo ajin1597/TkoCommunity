@@ -30,7 +30,7 @@ const Header = () => {
                     <ul className="flex justify-around">
                         <li>
                             <Link
-                                to="/NoticePage"
+                                to="/NoticePage/1"
                                 className={`hover:font-cookie ${location.pathname === "/NoticePage"
                                     ? "font-cookie border-b-2 border-black"
                                     : ""

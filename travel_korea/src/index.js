@@ -17,18 +17,14 @@ root.render(
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<App />} />
-      <Route path="NoticePage" element={<NoticePage />} />
+      {/* <Route path="NoticePage" element={<NoticePage />} /> */}
 
-      <Route path="NoticePage" element={<NoticePage />} >
-        <Route path="NoticePage/:page" element={<Paging />}></Route>
-      </Route>
+      <Route path="NoticePage/:page" element={<NoticePage />} />
 
       <Route path="SingleNoticPage" element={<SingleNoticPage />} />
       <Route path="CommunityPage" element={<CommunityPage />} />
       <Route path="ChatGptPage" element={<ChatGptPage />} />
       <Route path="Login" element={<Login />} />
-
-      {/* <Route path="LogIn" element={<ChatGptPage />} /> */}
 
     </Routes>
   </BrowserRouter>

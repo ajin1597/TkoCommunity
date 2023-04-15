@@ -12,15 +12,15 @@ function CommunityPage() {
     return (
         <>
             <Header />
-            <div id="전체 레이아웃" className="m-4">
+            <div id="전체 레이아웃" className="m-4 px-96">
                 <div className="bg-purple-200 flex p-2">
                     {arr.map((ele, idx) => {
                         return (
-                            <div>
-                                <div className="border-2 border-black m-2">{arr}</div>
-
+                            <div className="border-2 border-black m-2">
+                                <div className="">{arr[0]}</div>
+                                <div className="">{arr[1]}</div>
+                                <div className="">{arr[2]}</div>
                             </div>
-
                         );
                     })}
 

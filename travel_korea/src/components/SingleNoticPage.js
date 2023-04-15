@@ -8,80 +8,37 @@ const SingNoticPage = () => {
     const location = useLocation();
     const noticProperties = location.state.noticData;
 
-    const [data, setData] = useState();
-
     const [previousPost, setPreviousPost] = useState(); // 이전게시물
     const [currentPost, setCurrentPost] = useState(); // 현재게시물
     const [nextPost, setNextPost] = useState(); // 다음게시물
-
-    // const 
-
-    // const noticContent = noticProperties.
 
     console.log(noticProperties);
     console.log(location);
 
     useEffect(() => {
-        fetch(`http://172.16.38.249:9998/NoticeDetail/${noticProperties}`)
+        fetch(`http://180.70.15.132:9998/NoticeDetail/${noticProperties}`)
             .then((res) => res.json())
             .then((json) => {
                 const singleNoticData = json.noticeDetail;
-                console.log(singleNoticData);
-                setData(json.noticeDetail);
+                console.log(singleNoticData[0].num);
+                console.log(json)
 
-                // { singleNoticData[0] ? { setPreviousPost() } : null }
+                if (singleNoticData[2]) {
+                    setPreviousPost(json.noticeDetail[0]);
+                    setCurrentPost(json.noticeDetail[1]);
+                    setNextPost(json.noticeDetail[2]);
+                } else if (singleNoticData[1].num === noticProperties) {
+                    setCurrentPost(json.noticeDetail[1]);
+                    setNextPost(json.noticeDetail[0]);
+                } else if (singleNoticData[0].num === noticProperties) {
+                    setPreviousPost(json.noticeDetail[1]);
+                    setCurrentPost(json.noticeDetail[0]);
+                } else {
+                    return null;
+                }
 
-                // const now = (json) => {
-                // setPreviousPost(json.noticeDetail[0]);
-                // setCurrentPost(json.noticeDetail[1]);
-                // setNextPost(json.noticeDetail[2]);
-                // }
-                // 
-                // const first = (json) => {
-                // setCurrentPost(json.noticeDetail[0]);
-                // setNextPost(json.noticeDetail[1]);
-                // }
-                // 
-                // const end = (json) => {
-                // setPreviousPost(json.noticeDetail[0]);
-                // setCurrentPost(json.noticeDetail[1]);
-                // }
-                // 
-
-                // 
-                // a();
             })
     }, [noticProperties])
-
-
-    // const SingleData = () => {
-    // return (
-    // data[2].num ? (
-    // setPreviousPost(data[0]),
-    // setCurrentPost(data[1]),
-    // setNextPost(data[2])
-    // ) : data[1].num === 1 ? end 
-    // : data[0].num + data[1].num > 3 ? first
-    // : null
-    // )
-    // };
-
-    // SingleData();
-    // console.log(data[0])
-
-    // data.map((ele, idx) => {
-    //     console.log(ele)
-    // });
-
-    // data.map((ele, idx) => {
-
-    // console.log(ele);
-    // singleNoticData[2].num ? now
-    //     : (singleNoticData[1].num === 1) ? end
-    //         : (singleNoticData[0].num + singleNoticData[1].num > 3) ? first
-    //             : null
-
-    // });
 
     return (
         <>
@@ -98,8 +55,8 @@ const SingNoticPage = () => {
                 </div>
                 <div className="mt-8">{currentPost.contents}</div>
                 <div className="border-t-2 border-t-black mt-8 pt-2">
-                    {previousPost ? <div id="이전게시물">이전{previousPost.date} </div> : <div>첫 번째 게시물입니다</div>}
-                    {nextPost ? <div id="다음게시물">다음{nextPost.date}</div> : <div>마지막 게시물입니다</div>}
+                    {previousPost ? <div id="이전게시물">이전 {previousPost.title} </div> : <div>첫 번째 게시물입니다</div>}
+                    {nextPost ? <div id="다음게시물">다음 {nextPost.title}</div> : <div>마지막 게시물입니다</div>}
                     <div id="뒤로가기" className="mt-3"> 목록으로</div>
                 </div>
             </div> : null}
