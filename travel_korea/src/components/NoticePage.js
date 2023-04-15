@@ -1,4 +1,4 @@
-import { json, Link, useLocation, useNavigate, useParams, useSearchParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Header from "../Layout/Header";
 import Copyright from "../Layout/Copyright";
 import Paging from "./Pagination/Paging";
@@ -50,13 +50,11 @@ const NoticePage = () => {
                     <div id="공지사항 게시물 포멧" className="w-[100%] bg-blue-300">
                         {noticData.map((notic, idx) => {
                             return (
-                                <div key={idx}
-                                // onClick={qwe}
-                                >
+                                <div key={idx}>
                                     <nav>
                                         <ul>
                                             <li>
-                                                <Link to={"/SingleNoticPage"} state={{ noticData: notic.num }} className="flex">
+                                                <Link to={`/SingleNoticPage/${notic.num}`} className="flex">
                                                     <div id="게시물번호" className=" bg-red-50 w-[10%] flex justify-center">{notic.num}</div>
                                                     <div id="제목글" className=" bg-red-100 w-[60%] flex justify-center">{notic.title}</div>
                                                     <div id="작성자" className=" bg-red-200 w-[15%] flex justify-center">{notic.writer}</div>
