@@ -16,7 +16,7 @@ const SingNoticPage = () => {
             .then((json) => {
                 const singleNoticData = json.noticeDetail;
                 setSearchPageNum(parseInt(singleNoticData[0].page / 10 + 1))
-
+                console.log(json)
                 // if (singleNoticData[2]) { // 중간게시물 선택시
                 //     setPreviousPost(singleNoticData[0]);
                 //     setCurrentPost(singleNoticData[1]);
@@ -32,19 +32,21 @@ const SingNoticPage = () => {
                 // }
 
                 const now = () => {
-                    setPreviousPost(singleNoticData[0]);
+                    setPreviousPost(singleNoticData[2]);
                     setCurrentPost(singleNoticData[1]);
-                    setNextPost(singleNoticData[2]);
+                    setNextPost(singleNoticData[0]);
                 }
 
                 const first = () => {
                     setCurrentPost(singleNoticData[1]);
                     setNextPost(singleNoticData[0]);
+                    setPreviousPost(null);
                 }
 
                 const end = () => {
                     setPreviousPost(singleNoticData[1]);
                     setCurrentPost(singleNoticData[0]);
+                    setNextPost(null);
                 }
 
                 return (
@@ -97,9 +99,7 @@ const SingNoticPage = () => {
                                 : "이전 게시물이 없습니다"}
                         </button>
                         <button id="뒤로가기" className="flex justify-center w-full" onClick={() => {
-                            // fetch(``).then((res) => res.json()).then((json) => console.log(json))
                             navigate(`/NoticePage/${searchPageNum}`)
-
                         }}> 목록으로</button>
                         <button id="다음게시물" className="flex justify-end w-full">
                             {nextPost ?
