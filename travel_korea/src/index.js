@@ -10,6 +10,9 @@ import CommunityPage from "./components/CommunityPage";
 import ChatGptPage from "./components/ChatGptPage";
 import Login from "./components/Login";
 import SingleNoticPage from "./components/SingleNoticPage";
+import Writing from "./components/Writing";
+import MyPage from "./components/MyPage";
+import PostSearch from "./components/PostSearch";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -21,7 +24,9 @@ root.render(
       <Route path="CommunityPage" element={<CommunityPage />} />
       <Route path="ChatGptPage" element={<ChatGptPage />} />
       <Route path="Login" element={<Login />} />
-
+      <Route path="Writing" element={<Writing />} />
+      <Route path="MyPage" element={<MyPage />} />
+      <Route path="PostSearch" element={<PostSearch />} />
     </Routes>
   </BrowserRouter>
 );
