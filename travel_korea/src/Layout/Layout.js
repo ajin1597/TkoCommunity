@@ -4,7 +4,8 @@ import "../assets/fonts/CookieRunRegular.ttf";
 
 const Layout = (props) => {
   let location = useLocation();
-  // console.log(location)
+  console.log(location)
+  console.log(props)
   return (
     <>
       <div
@@ -32,8 +33,8 @@ const Layout = (props) => {
               </li>
               <li>
                 <Link
-                  to="/CommunityPage"
-                  className={`hover:font-cookie ${location.pathname === "/CommunityPage"
+                  to="/CommunityPage/1"
+                  className={`hover:font-cookie ${location.pathname === "/CommunityPage/1"
                     ? "font-cookie border-b-2 border-black"
                     : ""
                     }`}
@@ -99,6 +100,13 @@ const Layout = (props) => {
             className="flex justify-center items-center w-full h-[150px] text-3xl bg-gray-200"
           >
             공지사항
+          </div>
+        ) : props.title === "커뮤니티" ? (
+          <div
+            id="Top Layout"
+            className="flex justify-center items-center w-full h-[150px] text-3xl bg-green-200"
+          >
+            커뮤니티
           </div>
         ) : null}
 

@@ -20,7 +20,7 @@ const NoticePage = () => {
 
   useEffect(() => {
     //전체 데이터 갯수
-    fetch(`http://180.70.15.132:9998/Notice/count`)
+    fetch(`http://172.16.38.6:9998/Notice/count`)
       .then((res) => res.json())
       .then((json) => {
         setListCount(json.count[0].count);
@@ -29,7 +29,7 @@ const NoticePage = () => {
 
   useEffect(() => {
     // 해당 페이지 번호의 데이터 , 페이지가 선택될때마다 랜더링
-    fetch(`http://180.70.15.132:9998/Notice/${page}`)
+    fetch(`http://172.16.38.6:9998/Notice/${page}`)
       .then((res) => res.json())
       .then((json) => {
         console.log(json.mainResult);

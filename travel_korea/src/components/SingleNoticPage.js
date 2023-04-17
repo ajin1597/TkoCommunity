@@ -11,7 +11,7 @@ const SingNoticPage = () => {
   const [searchPageNum, setSearchPageNum] = useState();
 
   useEffect(() => {
-    fetch(`http://180.70.15.132:9998/NoticeDetail/${postNum}`)
+    fetch(`http://172.16.38.6:9998/NoticeDetail/${postNum}`)
       .then((res) => res.json())
       .then((json) => {
         const singleNoticData = json.noticeDetail;

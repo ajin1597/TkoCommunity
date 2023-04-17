@@ -21,7 +21,7 @@ root.render(
       <Route path="/" element={<App />} />
       <Route path="NoticePage/:page" element={<NoticePage />} />
       <Route path="SingleNoticPage/:postNum" element={<SingleNoticPage />} />
-      <Route path="CommunityPage" element={<CommunityPage />} />
+      <Route path="CommunityPage/:page" element={<CommunityPage />} />
       <Route path="ChatGptPage" element={<ChatGptPage />} />
       <Route path="Login" element={<Login />} />
       <Route path="Writing" element={<Writing />} />
