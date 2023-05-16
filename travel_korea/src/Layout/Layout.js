@@ -27,7 +27,7 @@ const Layout = (props) => {
               <li>
                 <Link
                   to="/NoticePage/1"
-                  className={`hover:font-cookie ${location.pathname === "/NoticePage/1"
+                  className={`hover:font-cookie ${location.pathname === `/NoticePage/${props.page}`
                     ? "font-cookie border-b-2 border-black" : ""}`}>공지사항
                 </Link>
               </li>
@@ -94,7 +94,7 @@ const Layout = (props) => {
       </div>
 
       <div className="pt-[65px]">
-        {props.title === "공지사항" ? (
+        {/* {props.title === "공지사항" ? (
           <div
             id="Top Layout"
             className="flex justify-center items-center w-full h-[150px] text-3xl bg-gray-200"
@@ -107,6 +107,15 @@ const Layout = (props) => {
             className="flex justify-center items-center w-full h-[150px] text-3xl bg-green-200"
           >
             커뮤니티
+          </div>
+        ) : null} */}
+
+        {props.title ? (
+          <div
+            id="Top Layout"
+            className={`flex justify-center items-center w-full h-[150px] text-3xl ${props.title === "공지사항" ? "bg-gray-200" : "bg-green-200"}`}
+          >
+            {props.title}
           </div>
         ) : null}
 

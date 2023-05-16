@@ -11,7 +11,7 @@ const SingNoticPage = () => {
   const [searchPageNum, setSearchPageNum] = useState();
 
   useEffect(() => {
-    fetch(`http://172.16.38.6:9998/NoticeDetail/${postNum}`)
+    fetch(`${url}/${postNum}`)
       .then((res) => res.json())
       .then((json) => {
         const singleNoticData = json.noticeDetail;
@@ -49,7 +49,7 @@ const SingNoticPage = () => {
           setNextPost(null);
         };
 
-        return singleNoticData.length === 3 ? now()
+        return singleNoticData.length === 4 ? now()
           : singleNoticData[1].num === parseInt(postNum) ? first()
             : singleNoticData[0].num === parseInt(postNum) ? end()
               : null;

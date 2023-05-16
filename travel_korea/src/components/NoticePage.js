@@ -6,13 +6,13 @@ import { useEffect, useState } from "react";
 const NoticePage = () => {
   const navigate = useNavigate();
   const { page } = useParams(); // 현제 페이지, 파라미터값
-  const handlePageChange = (page) => {
-    navigate(`/NoticePage/${page}`);
-  }; // 페이지헨들러 함수
+  const handlePageChange = (page) => { navigate(`/NoticePage/${page}`); }; // 페이지헨들러 함수
   const [noticData, setNoticData] = useState([]); // api에서 받아온 데이터 저장
   const [listCount, setListCount] = useState(); // 보여줄 리스트
   const [pageItemsCountPer] = useState(10); // 페이지 내부 리스트 갯수
   const [pageRangeDisplayed] = useState(5); // paginator에서 보여줄 페이지 범위
+
+  const url = process.env.REACT_APP_API_URL
 
   // "http://180.70.15.132:9999/noticepage" //{종훈이집}
   // "http://172.16.37.241:9999/noticepage"
@@ -20,7 +20,7 @@ const NoticePage = () => {
 
   useEffect(() => {
     //전체 데이터 갯수
-    fetch(`http://172.16.38.6:9998/Notice/count`)
+    fetch(`${url}/Notice/count`)
       .then((res) => res.json())
       .then((json) => {
         setListCount(json.count[0].count);
@@ -29,7 +29,7 @@ const NoticePage = () => {
 
   useEffect(() => {
     // 해당 페이지 번호의 데이터 , 페이지가 선택될때마다 랜더링
-    fetch(`http://172.16.38.6:9998/Notice/${page}`)
+    fetch(`${url}/Notice/${page}`)
       .then((res) => res.json())
       .then((json) => {
         console.log(json.mainResult);
@@ -39,7 +39,7 @@ const NoticePage = () => {
 
   return (
     <>
-      <Layout title="공지사항">
+      <Layout title="공지사항" page={page}>
         <div id="공지사항 페이지 전체 레이아웃">
           <div
             id="공지사항 게시물 리스트"
