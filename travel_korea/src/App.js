@@ -9,7 +9,7 @@ function App() {
   return (
     <>
       <Layout>
-        {/* <div id="전체 레이이웃">
+        <div id="전체 레이이웃">
           <div className="flex justify-center items-center border-black border-2  h-[500px] ">
             main 광고의 위치
           </div>
@@ -109,7 +109,7 @@ function App() {
           <div className=" flex justify-center bg-red-400 h-[400px] py-[40px]">
             여행 계시판
           </div>
-        </div> */}
+        </div>
       </Layout>
     </>
   );

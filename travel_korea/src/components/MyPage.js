@@ -1,6 +1,9 @@
 import Layout from "../Layout/Layout";
+import * as LoginCheck from "../util/CheckLogin.jsx";
 
 function MyPage() {
+  const loginState = LoginCheck.CheckLogin();
+
   return (
     <>
       <Layout>

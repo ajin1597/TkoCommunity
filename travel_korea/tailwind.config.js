@@ -9,7 +9,7 @@ module.exports = {
       fontFamily: {
         sans: ["cookieRegularFont", "Arial", "sans-serif"],
         cookie: ["cookieBlackFont"],
-      },
+      }
     },
   },
   plugins: [],

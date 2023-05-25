@@ -13,6 +13,7 @@ import SingleNoticPage from "./components/SingleNoticPage";
 import Writing from "./components/Writing";
 import MyPage from "./components/MyPage";
 import PostSearch from "./components/PostSearch";
+import Oauth from "./components/Oauth";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -27,6 +28,7 @@ root.render(
       <Route path="Writing" element={<Writing />} />
       <Route path="MyPage" element={<MyPage />} />
       <Route path="PostSearch" element={<PostSearch />} />
+      <Route path="Oauth" element={<Oauth />} />
     </Routes>
   </BrowserRouter>
 );
