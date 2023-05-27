@@ -23,7 +23,7 @@ const NoticePage = () => {
     fetch(`${url}/api/notice/count`)
       .then((res) => res.json())
       .then((json) => {
-        setListCount(json.count[0].count);
+        setListCount(json.count);
       });
   }, []);
 
@@ -32,8 +32,8 @@ const NoticePage = () => {
     fetch(`${url}/api/notice/${page}`)
       .then((res) => res.json())
       .then((json) => {
-        console.log(json.mainResult);
-        setNoticData(json.mainResult);
+        console.log(json);
+        setNoticData(json);
       });
   }, [page]);
 
@@ -52,7 +52,7 @@ const NoticePage = () => {
               공지사항
             </div>
             <div className="w-full flex justify-end mb-4">
-              <Link to={`/Writing`} className="flex justify-center items-center rounded-lg border-2 text-gray-50 bg-green-400 w-20 h-14 hover:bg-green-500">글쓰기</Link>
+              <Link to={`/NoticeWriting`} className="flex justify-center items-center rounded-lg border-2 text-gray-50 bg-green-400 w-20 h-14 hover:bg-green-500">글쓰기</Link>
             </div>
             <div
               id="리스트 타이틀"

@@ -9,7 +9,8 @@ import CommunityPage from "./components/Community/CommunityPage";
 import ChatGptPage from "./components/ChatGptPage";
 import Login from "./components/LoginAPI/Login";
 import SingleNoticPage from "./components/Notice/SingleNoticPage";
-import Writing from "./components/Community/Writing";
+import NoticeWriting from "./components/Notice/NoticeWriting";
+import CommuWriting from "./components/Community/CommuWriting";
 import MyPage from "./components/MyPage";
 import PostSearch from "./components/PostSearch";
 import Oauth from "./components/LoginAPI/Oauth";
@@ -24,7 +25,8 @@ root.render(
       <Route path="CommunityPage/:page" element={<CommunityPage />} />
       <Route path="ChatGptPage" element={<ChatGptPage />} />
       <Route path="Login" element={<Login />} />
-      <Route path="Writing" element={<Writing />} />
+      <Route path="NoticeWriting" element={<NoticeWriting />} />
+      <Route path="CommuWriting" element={<CommuWriting />} />
       <Route path="MyPage" element={<MyPage />} />
       <Route path="PostSearch" element={<PostSearch />} />
       <Route path="Oauth" element={<Oauth />} />

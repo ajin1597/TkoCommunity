@@ -8,7 +8,7 @@ import CheckLogin from "../../util/CheckLogin";
 // import q4 from "../assets/images/q3.jpg"
 // import q5 from "../assets/images/q3.jpg"
 
-const Writing = () => {
+const CommuWriting = () => {
   let location = useLocation();
   const imageInput = useRef();
 
@@ -162,4 +162,4 @@ const Writing = () => {
   );
 };
 
-export default Writing;
+export default CommuWriting;
