@@ -5,26 +5,8 @@ import Layout from "../../Layout/Layout";
 const SingNoticPage = () => {
   const navigate = useNavigate();
   const { postNum } = useParams();
-  // const [previousPost, setPreviousPost] = useState(); // 이전게시물
   const [currentPost, setCurrentPost] = useState(); // 현재게시물
-  // const [nextPost, setNextPost] = useState(); // 다음게시물
   const [searchPageNum, setSearchPageNum] = useState();
-  const [inputValue, setInputValue] = useState(""); // 내용글
-
-  // const handleFormSubmit = (e) => {
-  //   if (!inputValue) {
-  //     e.preventDefault();
-
-  //     alert("댓글을 입력");
-  //   }
-
-  //   const formData = new FormData();
-
-  //   formData.append("contents", inputValue);
-  //   formData.append("token", localStorage.getItem("token"));
-
-  //   //로그인 안하면 못하게
-  // };
 
   const url = process.env.REACT_APP_API_URL;
 
@@ -52,7 +34,6 @@ const SingNoticPage = () => {
               <div className="text-3xl mb-8 ">{currentPost.title}</div>
               <div id="작성시간 + 작성자" className=" flex pb-2 ">
                 <div className="pr-2 ">{currentPost.date}</div>
-                {/* <div className="pl-2">작성자 - {currentPost.writer}</div> */}
               </div>
             </div>
             <div className="mt-8">{currentPost.contents}</div>

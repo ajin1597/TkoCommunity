@@ -14,10 +14,6 @@ const NoticePage = () => {
 
   const url = process.env.REACT_APP_API_URL
 
-  // "http://180.70.15.132:9999/noticepage" //{종훈이집}
-  // "http://172.16.37.241:9999/noticepage"
-  // "http://172.16.38.135:9999/noticepage" //436
-
   useEffect(() => {
     //전체 데이터 갯수
     fetch(`${url}/api/notice/count`)

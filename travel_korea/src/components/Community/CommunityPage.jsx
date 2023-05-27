@@ -2,7 +2,6 @@ import { Link, json, useNavigate, useParams } from "react-router-dom";
 import Layout from "../../Layout/Layout";
 import Paging from "../Pagination/Paging";
 import { useEffect, useState } from "react";
-
 import * as LoginCheck from "../../util/CheckLogin.jsx";
 
 const CommunityPage = () => {
@@ -11,88 +10,32 @@ const CommunityPage = () => {
   const handlePageChange = (page) => {
     navigate(`/CommunityPage/${page}`);
   }; // 페이지헨들러 함수
-  const [noticData, setNoticData] = useState([]); // api에서 받아온 데이터 저장
+  const [commuData, setCommuData] = useState([]); // api에서 받아온 데이터 저장
   const [listCount, setListCount] = useState(); // 보여줄 리스트
   const [pageItemsCountPer] = useState(10); // 페이지 내부 리스트 갯수
   const [pageRangeDisplayed] = useState(5); // paginator에서 보여줄 페이지 범위
 
-  const test = "ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁaaaaㅁㅁ..."
-
   const loginState = LoginCheck.CheckLogin();
-
-  // const noticeDetail = [
-
-  //   {
-  //     "num": 2,
-  //     "title": "2번 게시물",
-  //     "writer": "강석원",
-  //     "date": "2023.04.15 21:20:42",
-  //     "contents": "2번 게시물 내용이다 ㅇㅅㅇ",
-  //     "page": 17,
-  //     "count": 0
-  //   },
-  //   {
-  //     "num": 2,
-  //     "title": "2번 게시물",
-  //     "writer": "강석원",
-  //     "date": "2023.04.15 21:20:42",
-  //     "contents": "2번 게시물 내용이다 ㅇㅅㅇ",
-  //     "page": 17,
-  //     "count": 0
-  //   },
-  //   {
-  //     "num": 2,
-  //     "title": "2번 게시물",
-  //     "writer": "강석원",
-  //     "date": "2023.04.15 21:20:42",
-  //     "contents": "2번 게시물 내용이다 ㅇㅅㅇ",
-  //     "page": 17,
-  //     "count": 0
-  //   },
-  //   {
-  //     "num": 2,
-  //     "title": "2번 게시물",
-  //     "writer": "강석원",
-  //     "date": "2023.04.15 21:20:42",
-  //     "contents": "2번 게시물 내용이다 ㅇㅅㅇ",
-  //     "page": 17,
-  //     "count": 0
-  //   }
-
-  // ]
-
-  // const [tests, setTests] = useState("");
-  //임시 const 변수
-
   const url = process.env.REACT_APP_API_URL
 
   useEffect(() => {
     //전체 데이터 갯수
-    fetch(`${url}/api/notice/count`)
+    fetch(`${url}/api/community/count`)
       .then((res) => res.json())
       .then((json) => {
-        setListCount(json.count[0].count);
+        setListCount(json.count);
       });
   }, []);
 
   useEffect(() => {
     // 해당 페이지 번호의 데이터 , 페이지가 선택될때마다 랜더링
-    fetch(`${url}/api/notice/${page}`)
+    fetch(`${url}/api/community/${page}`)
       .then((res) => res.json())
       .then((json) => {
-        console.log(json.mainResult);
-        setNoticData(json.mainResult);
+        console.log(json);
+        setCommuData(json);
       });
   }, [page]);
-
-  // useEffect(() => {
-  //   //임시 글 내용 불러올 effect 
-  //   fetch(`${url}/api/NoticeDetail/1`)
-  //     .then((res) => res.json()
-  //       .then((json) => {
-  //         setTests(json)
-  //       }))
-  // }, [tests])
 
   return (
     <>
@@ -109,24 +52,24 @@ const CommunityPage = () => {
               커뮤니티
             </div>
             <div className="w-full flex justify-end mb-4">
-              <Link to={`/Writing`} className="flex justify-center items-center rounded-lg border-2 text-gray-50 bg-green-400 w-20 h-14 mt-4 hover:bg-green-500">글쓰기</Link>
+              <Link to={`/CommuWriting`} className="flex justify-center items-center rounded-lg border-2 text-gray-50 bg-green-400 w-20 h-14 mt-4 hover:bg-green-500">글쓰기</Link>
             </div>
 
             <div id="커뮤니티 게시물 포멧" className="w-[100%] rounded-2xl bg-gray-50 flex flex-wrap justify-center">
-              {noticData.map((notic, idx) => {
+              {commuData.map((commu, idx) => {
                 return (
                   <div key={idx} className="m-4 w-[280px]">
                     <nav>
                       <ul>
-                        <li className="p-2 h-[250px] shadow-xl bg-white border-gray-300 border-2 rounded-2xl">
-                          <Link to={`/SingleNoticPage/${notic.num}`}>
+                        <li className="p-2 h-[260px] shadow-xl bg-white border-gray-300 border-2 rounded-2xl">
+                          <Link to={`/SingleCommuPage/${commu.num}`}>
                             <div className="flex justify-around items-center">
-                              <div id="작성자" className="flex justify-center text-sm w-[150px]">작성자 - {notic.writer}</div>
-                              <div id="작성시간" className="flex justify-center text-sm w-[130px] text-center">{notic.date}</div>
+                              <div id="작성자" className="flex justify-center text-sm w-[150px]">작성자 - {commu.writer}</div>
+                              <div id="작성시간" className="flex justify-center text-sm w-[130px] text-center">{commu.date}</div>
                             </div>
                             <div id="게시글이미지" className={`flex justify-center rounded-2xl mb-1 items-center h-[120px]`}></div>
-                            <div id="제목글" className="flex justify-lfet">{notic.title}</div>
-                            <div id="게시물내용" className="h-[100px] px-4 whitespace-normal truncate flex justify-center">{test}</div>
+                            <div id="제목글" className="flex justify-lfet text-lg font-cookie">{commu.title}</div>
+                            <div id="게시물내용" className="break-all line-clamp-2  ">{commu.contents}</div>
                           </Link>
                         </li>
                       </ul>

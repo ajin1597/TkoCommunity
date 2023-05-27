@@ -2,20 +2,10 @@ import { useLocation } from "react-router-dom";
 import Header from "../../Layout/Layout";
 import { useEffect, useRef, useState } from "react";
 import CheckLogin from "../../util/CheckLogin";
-// import q1 from "../assets/images/q1.jpg"
-// import q2 from "../assets/images/q2.jpg"
-// import q3 from "../assets/images/q3.jpg"
-// import q4 from "../assets/images/q3.jpg"
-// import q5 from "../assets/images/q3.jpg"
-
 const CommuWriting = () => {
   let location = useLocation();
   const imageInput = useRef();
 
-  // const img = [q1, q2, q3, q4, q5];
-  // const randomIndex = Math.floor(Math.random() * img.length);
-  // const randomImg = img[randomIndex];
-  // console.log(randomImg)
   const url = process.env.REACT_APP_API_URL;
 
   // console.log(CheckLogin());
@@ -33,12 +23,11 @@ const CommuWriting = () => {
   const [inputImage, setInputImage] = useState(); // 사진
   // const [postNum, setPostNum] = useState();
   const [imageSrc, setImageSrc] = useState("");
-  let inputImage1 = null;
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
 
-    if(!inputImage1) {
+    if(!inputImage) {
       alert("이미지를 넣어주세요");
       return;
     } else if (!inputTitle) {
@@ -49,33 +38,21 @@ const CommuWriting = () => {
       return;
     }
 
-    // if (!inputTitle) {
-    //   alert("제목을 입력해주세요");
-    //   return;
-    // } else if (!inputValue) {
-    //   alert("내용을 입력해주세요");
-    //   return;
-    // } else if (!inputImage1) {
-    //   // inputImage1=randomImg;
-    //   alert("이미지를 넣어주세요");
-    //   return;
-    // }
-
     console.log(inputImage);
 
     const formData = new FormData();
 
     formData.append("title", inputTitle);
     formData.append("contents", inputValue);
-    formData.append("image", inputImage1);
+    formData.append("image", inputImage);
     formData.append("token", localStorage.getItem("token"));
 
-    fetch(`${url}/api/writing`, {
+    fetch(`${url}/api/community/writing`, {
       method: "POST",
       body: formData,
     })
       .then((res) => res.json())
-      .then((json) => window.location.replace(`/SingleNoticPage/${json}`));
+      .then((json) => window.location.replace(`/SingleCommuPage/${json}`));
   };
 
   const onCickImageUpload = () => {
@@ -83,10 +60,9 @@ const CommuWriting = () => {
   };
 
   const encodeFileToBase64 = (fileBlob) => {
-    if (!fileBlob)       
-      return
+    if (!fileBlob) return
 
-      inputImage1=fileBlob;
+    setInputImage(fileBlob);
     const reader = new FileReader();
     reader.readAsDataURL(fileBlob);
     return new Promise((resolve) => {

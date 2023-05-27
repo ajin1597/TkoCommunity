@@ -9,6 +9,7 @@ import CommunityPage from "./components/Community/CommunityPage";
 import ChatGptPage from "./components/ChatGptPage";
 import Login from "./components/LoginAPI/Login";
 import SingleNoticPage from "./components/Notice/SingleNoticPage";
+import SingleCommuPage from "./components/Community/SingleCommuPage";
 import NoticeWriting from "./components/Notice/NoticeWriting";
 import CommuWriting from "./components/Community/CommuWriting";
 import MyPage from "./components/MyPage";
@@ -22,6 +23,7 @@ root.render(
       <Route path="/" element={<App />} />
       <Route path="NoticePage/:page" element={<NoticePage />} />
       <Route path="SingleNoticPage/:postNum" element={<SingleNoticPage />} />
+      <Route path="SingleCommuPage/:postNum" element={<SingleCommuPage />} />
       <Route path="CommunityPage/:page" element={<CommunityPage />} />
       <Route path="ChatGptPage" element={<ChatGptPage />} />
       <Route path="Login" element={<Login />} />
