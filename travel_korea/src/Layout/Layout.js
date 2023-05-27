@@ -75,7 +75,7 @@ const Layout = (props) => {
 
         <div
           id="상단바 오른쪽"
-          className="flex justify-end items-center w-[25%]"
+          className="flex justify-end items-center w-[25%] mr-5"
         >
           {loginState ? (
             <button

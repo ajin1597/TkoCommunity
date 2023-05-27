@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
-import Layout from "../Layout/Layout";
-import LoginImage from "../assets/images/kakao_login_large_wide.png";
-import { useNavigate } from "react-router-dom";
+import Layout from "../../Layout/Layout";
+import LoginImage from "../../assets/images/kakao_login_large_wide.png";
 
 const Login = () => {
   const REST_API_KEY = process.env.REACT_APP_KAKAO_LOGIN_REST_API_KEY;

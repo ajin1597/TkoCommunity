@@ -3,17 +3,16 @@ import ReactDOM from "react-dom/client";
 import "./App.css";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-
 import App from "./App";
-import NoticePage from "./components/NoticePage";
-import CommunityPage from "./components/CommunityPage";
+import NoticePage from "./components/Notice/NoticePage";
+import CommunityPage from "./components/Community/CommunityPage";
 import ChatGptPage from "./components/ChatGptPage";
-import Login from "./components/Login";
-import SingleNoticPage from "./components/SingleNoticPage";
-import Writing from "./components/Writing";
+import Login from "./components/LoginAPI/Login";
+import SingleNoticPage from "./components/Notice/SingleNoticPage";
+import Writing from "./components/Community/Writing";
 import MyPage from "./components/MyPage";
 import PostSearch from "./components/PostSearch";
-import Oauth from "./components/Oauth";
+import Oauth from "./components/LoginAPI/Oauth";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

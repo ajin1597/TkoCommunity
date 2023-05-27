@@ -1,7 +1,7 @@
 import Header from "../Layout/Header";
 import Copyright from "../Layout/Copyright";
 
-const Detail = () => {
+const SingleCommuPage = () => {
   return (
     <>
       <Header />
@@ -11,4 +11,4 @@ const Detail = () => {
   );
 };
 
-export default Detail;
+export default SingleCommuPage;

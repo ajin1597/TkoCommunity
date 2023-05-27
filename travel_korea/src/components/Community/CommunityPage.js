@@ -1,11 +1,9 @@
 import { Link, json, useNavigate, useParams } from "react-router-dom";
-import Layout from "../Layout/Layout";
-import Paging from "./Pagination/Paging";
+import Layout from "../../Layout/Layout";
+import Paging from "../Pagination/Paging";
 import { useEffect, useState } from "react";
-// import q1 from "../assets/images/q1.jpg"
-// import q2 from "../assets/images/q2.jpg"
-// import q3 from "../assets/images/q3.jpg"
-import * as LoginCheck from "../util/CheckLogin.jsx";
+
+import * as LoginCheck from "../../util/CheckLogin.jsx";
 
 const CommunityPage = () => {
   const navigate = useNavigate();
@@ -17,9 +15,7 @@ const CommunityPage = () => {
   const [listCount, setListCount] = useState(); // 보여줄 리스트
   const [pageItemsCountPer] = useState(10); // 페이지 내부 리스트 갯수
   const [pageRangeDisplayed] = useState(5); // paginator에서 보여줄 페이지 범위
-  // const img = [q1, q2, q3];
-  // const randomIndex = Math.floor(Math.random() * img.length);
-  // const randomImg = img[randomIndex];
+
   const test = "ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁaaaaㅁㅁ..."
 
   const loginState = LoginCheck.CheckLogin();
@@ -72,7 +68,7 @@ const CommunityPage = () => {
 
   useEffect(() => {
     //전체 데이터 갯수
-    fetch(`${url}/Notice/count`)
+    fetch(`${url}/api/notice/count`)
       .then((res) => res.json())
       .then((json) => {
         setListCount(json.count[0].count);
@@ -81,7 +77,7 @@ const CommunityPage = () => {
 
   useEffect(() => {
     // 해당 페이지 번호의 데이터 , 페이지가 선택될때마다 랜더링
-    fetch(`${url}/Notice/${page}`)
+    fetch(`${url}/api/notice/${page}`)
       .then((res) => res.json())
       .then((json) => {
         console.log(json.mainResult);
@@ -91,7 +87,7 @@ const CommunityPage = () => {
 
   // useEffect(() => {
   //   //임시 글 내용 불러올 effect 
-  //   fetch(`${url}/NoticeDetail/1`)
+  //   fetch(`${url}/api/NoticeDetail/1`)
   //     .then((res) => res.json()
   //       .then((json) => {
   //         setTests(json)

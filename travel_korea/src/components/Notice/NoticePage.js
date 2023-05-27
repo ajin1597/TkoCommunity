@@ -1,6 +1,6 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
-import Layout from "../Layout/Layout";
-import Paging from "./Pagination/Paging";
+import Layout from "../../Layout/Layout";
+import Paging from "../Pagination/Paging";
 import { useEffect, useState } from "react";
 
 const NoticePage = () => {
@@ -20,7 +20,7 @@ const NoticePage = () => {
 
   useEffect(() => {
     //전체 데이터 갯수
-    fetch(`${url}/Notice/count`)
+    fetch(`${url}/api/notice/count`)
       .then((res) => res.json())
       .then((json) => {
         setListCount(json.count[0].count);
@@ -29,7 +29,7 @@ const NoticePage = () => {
 
   useEffect(() => {
     // 해당 페이지 번호의 데이터 , 페이지가 선택될때마다 랜더링
-    fetch(`${url}/Notice/${page}`)
+    fetch(`${url}/api/notice/${page}`)
       .then((res) => res.json())
       .then((json) => {
         console.log(json.mainResult);
@@ -43,7 +43,7 @@ const NoticePage = () => {
         <div id="공지사항 페이지 전체 레이아웃">
           <div
             id="공지사항 게시물 리스트"
-            className="flex flex-col m-5 p-5"
+            className="flex flex-col "
           >
             <div
               id="Top Layout"
@@ -73,7 +73,7 @@ const NoticePage = () => {
                           <Link to={`/SingleNoticPage/${notic.num}`} className="flex py-2 text-base border-b-2 border-gray-200">
                             <div id="게시물번호" className=" bg-white w-[10%] flex justify-center">{notic.num}</div>
                             <div id="제목글" className=" bg-white w-[50%] flex pl-4 justify-start">{notic.title}</div>
-                            <div id="작성자" className=" bg-white w-[15%] flex justify-center">{notic.writer}</div>
+                            <div id="작성자" className=" bg-white w-[15%] flex justify-center">관리자</div>
                             <div id="작성시간" className=" bg-white w-[25%] flex justify-center">{notic.date}</div>
                           </Link>
                         </li>

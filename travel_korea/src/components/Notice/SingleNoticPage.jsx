@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import Layout from "../Layout/Layout";
+import Layout from "../../Layout/Layout";
 
 const SingNoticPage = () => {
   const navigate = useNavigate();
@@ -40,7 +40,7 @@ const SingNoticPage = () => {
   ];
   console.log(noticeDetail.num);
   useEffect(() => {
-    fetch(`${url}/NoticeDetail/${postNum}`)
+    fetch(`${url}/api/noticeDetail/${postNum}`)
       .then((res) => res.json())
       .then((json) => {
         const singleNoticData = json.noticeDetail;
@@ -104,14 +104,21 @@ const SingNoticPage = () => {
 
   return (
     <>
-      {/* <Layout>
+      <Layout>
         {currentPost ? (
-          <div className=" my-5 ">
-            <div className="text-lg border-b-2 border-gray-500 mb-4">공지사항 - {currentPost.num}번 게시물</div>
-            <div className="text-3xl mb-8">글 제목 :  {currentPost.title}</div>
-            <div id="작성시간 + 작성자" className=" flex pb-2 border-b-2 border-black">
-              <div className="pr-2 border-r-2 border-r-black">{currentPost.date}</div>
-              <div className="pl-2">작성자 - {currentPost.writer}</div>
+          <div className="">
+            <div
+              id="Top Layout"
+              className={`flex justify-start items-end pb-16 mb-5 h-[150px] text-3xl border-b-2 border-gray-300 `}
+            >
+              공지사항 - {currentPost.num}번 게시물
+            </div>
+            <div className="flex justify-between items-center border-b-2 border-black">
+              <div className="text-3xl mb-8 ">{currentPost.title}</div>
+              <div id="작성시간 + 작성자" className=" flex pb-2 ">
+                <div className="pr-2 ">{currentPost.date}</div>
+                {/* <div className="pl-2">작성자 - {currentPost.writer}</div> */}
+              </div>
             </div>
             <div className="mt-8">{currentPost.contents}</div>
             <div className="  border-t-2 w-full border-t-black mt-8   pt-2 flex">
@@ -129,47 +136,9 @@ const SingNoticPage = () => {
             </div>
           </div>
         ) : null}
-      </Layout> */}
-
-      <Layout>
-        {noticeDetail ? (
-          <div className=" my-5 ">
-            <div className="text-lg border-b-2 border-gray-500 mb-4">공지사항 - {noticeDetail.num}번 게시물</div>
-            <div className="text-3xl mb-8">글 제목 :  {noticeDetail.title}</div>
-            <div id="작성시간 + 작성자" className=" flex pb-2 border-b-2 border-black">
-              <div className="pr-2 border-r-2 border-r-black">{noticeDetail.date}</div>
-              <div className="pl-2">작성자 - {noticeDetail.writer}</div>
-            </div>
-            <div className="mt-8">{noticeDetail.contents}</div>
-            <div className="  border-t-2 w-full border-t-black mt-8 border-b-2 border-gray-300 py-2 flex">
-              <div id="이전게시물" className="  w-full">
-                {noticeDetail ? (<Link to={`/SingleNoticPage/${noticeDetail.num}`}>이전 글 - {noticeDetail.title}</Link>)
-                  : ("이전 게시물이 없습니다")}
-              </div>
-              <button id="뒤로가기" className="flex justify-center w-full" onClick={() => { navigate(`/NoticePage/${searchPageNum}`) }}>
-                {" "}목록으로
-              </button>
-              <div id="다음게시물" className="flex justify-end w-full">
-                {noticeDetail ? (<Link to={`/SingleNoticPage/${noticeDetail.num}`}>다음 글 - {noticeDetail.title} </Link>)
-                  : ("다음 게시물이 없습니다")}
-              </div>
-            </div>
-            <div id="댓글 칸">
-              {/* 로그인 한 뒤 작성가능, 작성자는 프로필 가져와서 자동으로 넣기,   */}
-              <form id="댓글작성form" className="flex justify-center items-center py-10 border border-b-black">
-                <div className="flex items-center h-[50px] border border-black">회원 프로필</div>
-                <textarea type="text" spellcheck="false" className="mx-5 w-[800px] border border-black"></textarea>
-                <button className="h-[50px] border border-black ">등록버튼</button>
-              </form>
-              <div id="작성된댓글 list" className="flex justify-center items-center py-10">
-                <div className="flex items-center h-[50px] border border-black">회원 프로필</div>
-                <div className="h-[50px] mx-5 w-[800px] border border-black roun"></div>
-                {/* <button className="h-[50px] border border-black ">등록버튼</button> */}
-              </div>
-            </div>
-          </div>
-        ) : null}
       </Layout>
+
+
     </>
   );
 };
