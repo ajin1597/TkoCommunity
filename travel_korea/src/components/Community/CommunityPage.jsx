@@ -69,7 +69,7 @@ const CommunityPage = () => {
                             </div>
                             <div id="게시글이미지" className={`flex justify-center rounded-2xl mb-1 items-center h-[120px]`}></div>
                             <div id="제목글" className="flex justify-lfet text-lg font-cookie">{commu.title}</div>
-                            <div id="게시물내용" className="break-all line-clamp-2  ">{commu.contents}</div>
+                            <div id="게시물내용" className="break-all line-clamp-2">{commu.contents}</div>
                           </Link>
                         </li>
                       </ul>

@@ -21,7 +21,6 @@ const CommuWriting = () => {
   const [inputTitle, setInputTitle] = useState(""); // 제목
   const [inputValue, setInputValue] = useState(""); // 내용
   const [inputImage, setInputImage] = useState(); // 사진
-  // const [postNum, setPostNum] = useState();
   const [imageSrc, setImageSrc] = useState("");
 
   const handleFormSubmit = (e) => {
@@ -37,8 +36,6 @@ const CommuWriting = () => {
       alert("내용을 입력해주세요");
       return;
     }
-
-    console.log(inputImage);
 
     const formData = new FormData();
 

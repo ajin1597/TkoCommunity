@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, json, useNavigate, useParams } from "react-router-dom";
 import Layout from "../../Layout/Layout";
 
 const SingleCommuPage = () => {
@@ -8,6 +8,7 @@ const SingleCommuPage = () => {
   const [currentPost, setCurrentPost] = useState(); // 현재게시물
   const [searchPageNum, setSearchPageNum] = useState();
   const [inputValue, setInputValue] = useState(""); // 내용
+  const [postComment, setPostComment] = useState(""); // 댓글 list
 
   const url = process.env.REACT_APP_API_URL;
 
@@ -19,7 +20,7 @@ const SingleCommuPage = () => {
 
     const formData = new FormData();
 
-    formData.append("contents", inputValue);
+    formData.append("comment", inputValue);
     formData.append("postNum", postNum);
     formData.append("token", localStorage.getItem("token"));
 
@@ -33,11 +34,15 @@ const SingleCommuPage = () => {
     fetch(`${url}/api/communityDetail/${postNum}`)
       .then((res) => res.json())
       .then((json) => {
-        console.log(json)
-        setSearchPageNum(parseInt(json[0].page / 12 + 1));
-        setCurrentPost(...json);
+        console.log(json.post[0].page)
+        console.log(json.comment)
+        
+        setSearchPageNum(parseInt(json.post[0].page / 12 + 1));
+        setCurrentPost(json.post[0]);
+        setPostComment(json.comment);
       });
   }, [postNum]);
+
 
   return (
     <>
@@ -57,7 +62,7 @@ const SingleCommuPage = () => {
               </div>
             </div>
             <div className="mt-8 break-all">{currentPost.contents}</div>
-            <div className="  border-t-2 w-full border-t-black my-8   pt-2 flex">
+            <div className="  border-t-2 w-full border-t-black my-8 pt-2 flex">
               <div id="이전게시물" className="  w-full">
                 {currentPost.nextNum ? (
                   <Link to={`/SingleCommuPage/${currentPost.nextNum}`}>
@@ -88,25 +93,38 @@ const SingleCommuPage = () => {
               </div>
             </div>
 
-            <div id="댓글 칸">
+            <div id="댓글 칸" className="w-full ">
               {/* 로그인 한 뒤 작성가능, 작성자는 프로필 가져와서 자동으로 넣기,   */}
-              <form  id="writingForm" className="flex justify-center items-center" onSubmit={handleFormSubmit}>
-                <div className="flex items-center h-[50px] border border-black">회원 프로필</div>
-                <textarea type="text" className="mx-5 w-[800px] border border-black" 
-                value={inputValue} onChange={(e) => setInputValue(e.target.value)}/>
-                <button type="submit" className="h-[50px] border border-black">
-                작성하기
-                </button> 
-              </form>
-              <div id="작성된댓글 list" className="flex justify-center items-center py-10">
-                <div className="flex items-center h-[50px] border border-black">회원 프로필</div>
-                <div className="h-[50px] mx-5 w-[800px] border border-black roun"></div>
-                {/* <button className="h-[50px] border border-black ">등록버튼</button> */}
+              <div className="flex justify-center">
+                <form  id="writingForm" className="flex justify-center items-center border-2 rounded-2xl" onSubmit={handleFormSubmit}>
+                  {/* <div id="카카오 프로필" className="flex items-center h-[50px] border border-black">회원 프로필</div> */}
+                  <textarea type="text" className="mx-5 w-[800px] h-auto outline-none resize-none " 
+                  rows="1"
+                  placeholder="댓글을 입력하세요."
+                  value={inputValue} onChange={(e) => setInputValue(e.target.value)}/>
+                  <button type="submit" className="pr-5 h-[50px] text-green-500"
+                  // 작성이 끝나면 해당 게시물로 이동
+                  >
+                  게시
+                  </button>
+                </form>
+              </div>
+              
+              <div id="댓글 list" className="flex justify-center items-center py-10">
+              {postComment.map((comments, idx) => {
+                  return (
+                    <div key={idx}>
+                      {/* <div className="flex items-center h-[50px] border border-black">회원 프로필</div> */}
+                      <div className="h-[50px] mx-5 w-[800px] border border-black roun">{comments.num}</div>
+                    </div>
+    
+                  )
+              }) }
               </div>
             </div>
 
           </div>
-        ) : null}
+        ) : navigate(`/communityPage/1`)}
       </Layout>
     </>
   );

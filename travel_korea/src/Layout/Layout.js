@@ -19,13 +19,13 @@ const Layout = (props) => {
         id="상단바"
         className="flex justify-between items-center bg-white h-[65px] text-xl border-b-2 border-b-gray-300 fixed w-full"
       >
-        <div id="상단바 왼쪽" className="flex justify-around w-[20%] bg-white ">
+        <div id="상단바 왼쪽" className="flex justify-around w-[20%]  ">
           <Link to="/">
             <TkoLogo className="w-[168px]" />
           </Link>
         </div>
 
-        <div id="상단바 가운데" className="w-[55%]">
+        <div id="상단바 가운데" className=" w-[65%]">
           <nav>
             <ul className="flex justify-around">
               <li>
@@ -75,7 +75,7 @@ const Layout = (props) => {
 
         <div
           id="상단바 오른쪽"
-          className="flex justify-end items-center w-[25%] mr-5"
+          className="flex justify-end items-center w-[15%] mr-5 "
         >
           {loginState ? (
             <button

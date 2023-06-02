@@ -17,7 +17,7 @@ const Login = () => {
   // 디자인 수정
   return (
     <Layout title="로그인">
-      <div className="flex justify-center">
+      <div className="flex justify-center mt-28">
         <button onClick={kakaoLogin}>
           <img src={LoginImage} />
         </button>

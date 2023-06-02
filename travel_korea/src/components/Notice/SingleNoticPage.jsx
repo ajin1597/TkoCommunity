@@ -68,7 +68,7 @@ const SingNoticPage = () => {
               </div>
             </div>
           </div>
-        ) : null}
+        ) :  navigate(`/NoticePage/1`)}
       </Layout>
     </>
   );
