@@ -1,12 +1,26 @@
 import { ReactComponent as TkoLogo } from "../assets/images/tkoLogo.svg";
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, Link, useNavigate } from "react-router-dom";
 import "../assets/fonts/CookieRunRegular.ttf";
 import * as LoginCheck from "../util/CheckLogin.jsx";
 import { useState } from "react";
 
 const Layout = (props) => {
+  const url = process.env.REACT_APP_API_URL;
+  const navigate = useNavigate();
   const location = useLocation();
   const [loginState, setLoginState] = useState(LoginCheck.CheckLogin());
+  const [inputValue, setInputValue] = useState(""); // 내용
+
+  const handleFormSubmit = (e) => {
+
+    const formData = new FormData();
+    formData.append("contents", inputValue);
+
+    fetch(`${url}/api/community/search`, {
+      method: "POST",
+      body: formData,
+    });
+  }
 
   const LogOut = () => {
     localStorage.removeItem("token");
@@ -17,7 +31,7 @@ const Layout = (props) => {
     <div className="min-w-[1000px] flex flex-col h-screen">
       <div
         id="상단바"
-        className="flex justify-between items-center bg-white h-[65px] text-xl border-b-2 border-b-gray-300 fixed w-full"
+        className="flex justify-between items-center bg-white h-[65px] text-xl border-b-2 border-b-gray-300 fixed w-full z-50"
       >
         <div id="상단바 왼쪽" className="flex justify-around w-[20%]  ">
           <Link to="/">
@@ -59,31 +73,49 @@ const Layout = (props) => {
               </li>
 
               <li>
-                <Link
-                  to="/PostSearch"
-                  className={`hover:font-cookie ${location.pathname === "/PostSearch"
-                    ? "font-cookie border-b-2 border-black"
-                    : ""
-                    }`}
-                >
-                  게시물검색
-                </Link>
+                <div className="flex px-2 items-center border-2 border-gray-400 rounded-2xl" onSubmit={handleFormSubmit}>
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                  </svg>
+                  <textarea
+                    type="text"
+                    className="pt-1 rounded-xl text-base w-full h-[30px] outline-none resize-none"
+                    placeholder="게시물검색"
+                    value={inputValue}
+                    onChange={(e) => setInputValue(e.target.value)}
+                  />
+                  <button onClick={() => {
+                    sessionStorage.setItem("search", inputValue);
+                    navigate(`/SearchCommunityPost`);
+                  }}
+                    className="text-gray-800 w-[50px] text-lg">검색</button>
+                </div>
               </li>
             </ul>
           </nav>
         </div>
 
-        <div
-          id="상단바 오른쪽"
+        <div id="상단바 오른쪽"
           className="flex justify-end items-center w-[15%] mr-5 "
         >
           {loginState ? (
-            <button
-              className="flex justify-center hover:font-cookie"
-              onClick={LogOut}
-            >
-              로그아웃
-            </button>
+            <div className="flex">
+              <Link
+                to="/MyPage"
+                className={`flex justify-end mr-2 hover:font-cookie ${location.pathname === `/MyPage`
+                  ? "font-cookie border-b-2 border-black"
+                  : ""
+                  }`}
+              >
+                마이페이지
+              </Link>
+              <button
+                className="pl-2 hover:font-cookie border-l-2 border-l-black"
+                onClick={LogOut}
+              >
+                로그아웃
+              </button>
+            </div>
           ) : (
             <div id="로그인" className="flex justify-center hover:font-cookie">
               <div
@@ -109,38 +141,12 @@ const Layout = (props) => {
         </div>
       </div>
 
-      <div className="pt-[65px] flex-1">
-        {/* {props.title === "공지사항" ? (
-          <div
-            id="Top Layout"
-            className="flex justify-center items-center w-full h-[150px] text-3xl bg-gray-200"
-          >
-            공지사항
-          </div>
-        ) : props.title === "커뮤니티" ? (
-          <div
-            id="Top Layout"
-            className="flex justify-center items-center w-full h-[150px] text-3xl bg-green-200"
-          >
-            커뮤니티
-          </div>
-        ) : null} */}
-
-        {/* {props.title ? (
-          <div
-            id="Top Layout"
-            className={`flex justify-center items-end pl-[350px] bg-red-50 w-[55%] h-[150px] text-3xl border-b-2 border-gray-400 `}
-          >
-            {props.title}
-          </div>
-        ) : null} */}
-
+      <div id="전체 컴포넌트" className="pt-[30px] flex-1">
         <div className="px-[16%] py-10">{props.children}</div>
-
       </div>
 
       <div id="하단 사이트 정보" className="sticky top-[100vh]">
-        <div className="bg-gray-100 py-10">
+        <div className="bg-gray-100 py-2">
           <div className="flex flex-wrap justify-between max-w-screen-xl mx-auto px-4 sm:px-6 text-gray-800">
             <div className="p-5">
               <div className="text-xs uppercase text-gray-500 font-medium">

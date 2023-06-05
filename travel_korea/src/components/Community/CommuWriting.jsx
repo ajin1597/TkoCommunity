@@ -5,6 +5,8 @@ import CheckLogin from "../../util/CheckLogin";
 const CommuWriting = () => {
   let location = useLocation();
   const imageInput = useRef();
+  const ref = useRef();
+
 
   const url = process.env.REACT_APP_API_URL;
 
@@ -26,7 +28,7 @@ const CommuWriting = () => {
   const handleFormSubmit = (e) => {
     e.preventDefault();
 
-    if(!inputImage) {
+    if (!inputImage) {
       alert("이미지를 넣어주세요");
       return;
     } else if (!inputTitle) {
@@ -36,6 +38,9 @@ const CommuWriting = () => {
       alert("내용을 입력해주세요");
       return;
     }
+
+    if (ref.current) return;
+    ref.current = true;
 
     const formData = new FormData();
 
@@ -89,9 +94,8 @@ const CommuWriting = () => {
               onChange={(e) => encodeFileToBase64(e.target.files[0])}
             />
             <div
-              className={`flex justify-center items-center  h-[350px] w-full ${
-                imageSrc ? "border-2 border-gray-200" : "border-2 border-black"
-              }`}
+              className={`flex justify-center items-center  h-[350px] w-full ${imageSrc ? "border-2 border-gray-200" : "border-2 border-black"
+                }`}
               onClick={onCickImageUpload}
             >
               {imageSrc ? (

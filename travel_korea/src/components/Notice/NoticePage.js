@@ -11,6 +11,8 @@ const NoticePage = () => {
   const [listCount, setListCount] = useState(); // 보여줄 리스트
   const [pageItemsCountPer] = useState(10); // 페이지 내부 리스트 갯수
   const [pageRangeDisplayed] = useState(5); // paginator에서 보여줄 페이지 범위
+  const [userKey, setUserKey] = useState(); // 관리자, 일반회원 구분
+
 
   const url = process.env.REACT_APP_API_URL
 
@@ -25,11 +27,20 @@ const NoticePage = () => {
 
   useEffect(() => {
     // 해당 페이지 번호의 데이터 , 페이지가 선택될때마다 랜더링
-    fetch(`${url}/api/notice/${page}`)
+
+    const formData = new FormData();
+    // 사용자 식별
+    formData.append("token", localStorage.getItem("token"));
+
+    fetch(`${url}/api/notice/${page}`, {
+      method: "POST",
+      body: formData,
+    })
       .then((res) => res.json())
       .then((json) => {
         console.log(json);
-        setNoticData(json);
+        setNoticData(json.noticeList);
+        setUserKey(json.userState);
       });
   }, [page]);
 
@@ -47,9 +58,13 @@ const NoticePage = () => {
             >
               공지사항
             </div>
-            <div className="w-full flex justify-end mb-4">
-              <Link to={`/NoticeWriting`} className="flex justify-center items-center rounded-lg border-2 text-gray-50 bg-green-400 w-20 h-14 hover:bg-green-500">글쓰기</Link>
-            </div>
+            {userKey ? (
+              <div id="글작성" className="w-full flex justify-end mb-4">
+                <Link to={`/NoticeWriting`} className="flex justify-center items-center rounded-lg border-2 text-gray-50 bg-green-400 w-20 h-14 hover:bg-green-500">글쓰기</Link>
+              </div>
+            ) : null
+
+            }
             <div
               id="리스트 타이틀"
               className="bg-gray-100 flex justify-between py-2 w-[100%] border-t-2 border-t-gray-300"

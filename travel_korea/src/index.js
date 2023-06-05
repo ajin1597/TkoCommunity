@@ -13,8 +13,8 @@ import SingleCommuPage from "./components/Community/SingleCommuPage";
 import NoticeWriting from "./components/Notice/NoticeWriting";
 import CommuWriting from "./components/Community/CommuWriting";
 import MyPage from "./components/MyPage";
-import PostSearch from "./components/PostSearch";
 import Oauth from "./components/LoginAPI/Oauth";
+import SearchCommunityPost from "./components/Community/SearchCommunityPost"
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -30,7 +30,7 @@ root.render(
       <Route path="NoticeWriting" element={<NoticeWriting />} />
       <Route path="CommuWriting" element={<CommuWriting />} />
       <Route path="MyPage" element={<MyPage />} />
-      <Route path="PostSearch" element={<PostSearch />} />
+      <Route path="SearchCommunityPost" element={<SearchCommunityPost />} />
       <Route path="Oauth" element={<Oauth />} />
     </Routes>
   </BrowserRouter>

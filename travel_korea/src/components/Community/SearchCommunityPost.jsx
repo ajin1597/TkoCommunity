@@ -4,11 +4,11 @@ import Paging from "../Pagination/Paging";
 import { useEffect, useState } from "react";
 import * as LoginCheck from "../../util/CheckLogin.jsx";
 
-const CommunityPage = () => {
+const SearchCommunityPost = () => {
   const navigate = useNavigate();
   const { page } = useParams(); // 현제 페이지, 파라미터값
   const handlePageChange = (page) => {
-    navigate(`/CommunityPage/${page}`);
+    navigate(`/SearchCommunityPost/${page}`);
   }; // 페이지헨들러 함수
   const [commuData, setCommuData] = useState([]); // api에서 받아온 데이터 저장
   const [listCount, setListCount] = useState(); // 보여줄 리스트
@@ -18,24 +18,22 @@ const CommunityPage = () => {
   const loginState = LoginCheck.CheckLogin();
   const url = process.env.REACT_APP_API_URL
 
-  useEffect(() => {
-    //전체 데이터 갯수
-    fetch(`${url}/api/community/count`)
-      .then((res) => res.json())
-      .then((json) => {
-        setListCount(json.count);
-      });
-  }, []);
+  const item = sessionStorage.getItem("search");
 
   useEffect(() => {
     // 해당 페이지 번호의 데이터 , 페이지가 선택될때마다 랜더링
-    fetch(`${url}/api/community/${page}`)
+    const formData = new FormData();
+    console.log(item)
+    formData.append("contents", item);
+
+    fetch(`${url}/api/community/search`, { method: "POST", body: formData, })
       .then((res) => res.json())
       .then((json) => {
         console.log(json);
         setCommuData(json);
+        setListCount(json.length)
       });
-  }, [page]);
+  }, [item]);
 
   return (
     <>
@@ -92,4 +90,4 @@ const CommunityPage = () => {
 };
 
 
-export default CommunityPage;
+export default SearchCommunityPost;
