@@ -15,7 +15,7 @@ const CommuWriting = () => {
   useEffect(() => {
     if (!CheckLogin()) {
       alert("로그인 후 글 작성이 가능합니다.");
-      localStorage.setItem("pathName", location.pathname);
+      sessionStorage.setItem("pathName", location.pathname);
       window.location.replace("/login");
     }
   }, []);
@@ -94,7 +94,7 @@ const CommuWriting = () => {
               onChange={(e) => encodeFileToBase64(e.target.files[0])}
             />
             <div
-              className={`flex justify-center items-center  h-[350px] w-full ${imageSrc ? "border-2 border-gray-200" : "border-2 border-black"
+              className={`flex justify-center items-center h-[350px] w-full ${imageSrc ? "border-2 border-gray-200" : "border-2 border-black"
                 }`}
               onClick={onCickImageUpload}
             >
@@ -108,8 +108,9 @@ const CommuWriting = () => {
             {/* 제목 */}
             <input
               type="text"
-              className="py-2 px-4 rounded-xl bg-green-200 w-full"
+              className="py-2 px-4 rounded-xl bg-green-200 w-full outline-none resize-none"
               placeholder="제목을 입력해주세요."
+              spellcheck="false"
               value={inputTitle}
               onChange={(e) => setInputTitle(e.target.value)}
             />
@@ -117,8 +118,9 @@ const CommuWriting = () => {
             {/* 본문 */}
             <textarea
               type="text"
-              className="py-2 px-4 rounded-xl bg-blue-200 w-full h-[500px]"
+              className="py-2 px-4 rounded-xl bg-blue-200 w-full h-[500px] outline-none resize-none"
               placeholder="Type a message..."
+              spellcheck="false"
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
             />

@@ -64,13 +64,13 @@ function App() {
               {communityList.map((post, idx) => {
                 return (
                   <Link to={`/SingleCommuPage/${post.num}`} className="flex">
-                    <div key={idx} className="w-[200px] h-[250px]">
+                    <div key={idx} className="w-[200px]">
                       <img
                         src={post.image}
                         className="card-img-top rounded-xl h-[170px] w-full"
                       />
                       <div className="card-body">
-                        <h5 className="card-title">{post.title}</h5>
+                        <h5 className="card-title h-[50px] line-clamp-2 truncate">{post.title}</h5>
                         <hr />
                         <p className="card-text">{post.writer}</p>
                         <hr />
@@ -92,10 +92,10 @@ function App() {
               <table class="table-auto" style={{ width: "100%" }}>
                 <thead>
                   <tr>
-                    <th class="border px-4 py-2 w-[10%]">No.</th>
-                    <th class="border px-4 py-2 w-[40%]">제목</th>
-                    <th class="border px-4 py-2 w-[20%]">작성자</th>
-                    <th class="border px-4 py-2 w-[30%]">작성날짜</th>
+                    <th class="border px-4 py-2 w-[15%]">No.</th>
+                    <th class="border px-4 py-2 w-[50%]">제목</th>
+                    {/* <th class="border px-4 py-2 w-[20%]">작성자</th> */}
+                    <th class="border px-4 py-2 w-[35%]">작성날짜</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -104,7 +104,7 @@ function App() {
                       key={idx}
                       className={`${idx % 2 === 0 ? "bg-slate-100" : ""}`}
                     >
-                      <td className="border px-4 py-2">{notice.num}</td>
+                      <td className="text-center border px-4 py-2">{notice.num}</td>
                       <td
                         className="border px-4 py-2 cursor-pointer"
                         onClick={() =>
@@ -113,8 +113,7 @@ function App() {
                       >
                         {notice.title}
                       </td>
-                      <td className="border px-4 py-2">{notice.writer}</td>
-                      <td className="border px-4 py-2">{notice.date}</td>
+                      <td className="text-center border px-4 py-2">{notice.date}</td>
                     </tr>
                   ))}
                 </tbody>

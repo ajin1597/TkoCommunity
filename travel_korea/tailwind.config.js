@@ -14,7 +14,7 @@ module.exports = {
     screens: {
       sm: { min: "400px", max: "815px" },
       md: { min: "816px", max: "1250px" },
-      lg: { min: "1251px", max: "2200px" },
+      lg: { min: "1251px", max: "2500px" },
     },
   },
   plugins: [],

@@ -19,13 +19,28 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.post("/chatbot", async (req, res) => {
-  const { inputValue } = req.body;
+  const inputValue = req.body;
+  let contents = [];
 
   console.log(inputValue);
+  inputValue.map((ele, idx) => {
+    let role;
+    if (ele.isUser) role = "user";
+    else role = "assistant";
+
+    const content = ele.content;
+    contents.push({ role, content });
+  });
 
   const response = await openai.createChatCompletion({
     model: "gpt-3.5-turbo",
-    messages: [{ role: "user", content: inputValue }],
+    messages: [
+      {
+        role: "system",
+        content: "국내 여행지를 추천해주고 정보를 제공하는 챗봇",
+      },
+      ...contents,
+    ],
   });
 
   console.log(response.data.choices[0].message);

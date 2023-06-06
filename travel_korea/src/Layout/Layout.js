@@ -29,6 +29,18 @@ const Layout = (props) => {
     setLoginState(LoginCheck.CheckLogin());
   };
 
+  const handleOnClick = () => {
+    sessionStorage.setItem("search", inputValue);
+    navigate(`/SearchCommunityPost`);
+    setInputValue("");
+  };
+
+  const handleOnKeyPress = (e) => {
+    if (e.key === "Enter") {
+      handleOnClick(); // Enter 입력이 되면 클릭 이벤트 실행
+    }
+  };
+
   return (
     // 반응형 디자인(sm, md, lg)
     <div className="flex flex-col h-screen">
@@ -44,7 +56,7 @@ const Layout = (props) => {
             <TkoLogo className="sm:hidden w-[168px]" />
             <div className="md:hidden lg:hidden flex pl-5 w-[45%]">
               <div>TK</div>
-              <div className="text-green-400">cummu</div>
+              <div className="text-green-400">commu</div>
             </div>
           </Link>
         </div>
@@ -87,18 +99,21 @@ const Layout = (props) => {
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
                   </svg>
-                  <textarea
+                  <input
                     type="text"
                     className="pt-1 rounded-xl text-base w-full h-[30px] outline-none resize-none"
                     placeholder="게시물검색"
                     value={inputValue}
+                    spellcheck="false"
                     onChange={(e) => setInputValue(e.target.value)}
+                    onKeyPress={handleOnKeyPress}
                   />
-                  <button onClick={() => {
-                    sessionStorage.setItem("search", inputValue);
-                    navigate(`/SearchCommunityPost`);
-                  }}
-                    className="text-gray-800 w-[50px] text-lg">검색</button>
+                  <button
+                    onClick={handleOnClick}
+                    className="text-gray-800 w-[50px] text-lg"
+                  >
+                    검색
+                  </button>
                 </div>
               </li>
             </ul>
@@ -155,38 +170,41 @@ const Layout = (props) => {
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
               <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
             </svg>
-            <textarea
+            <input
               type="text"
               className="pt-1 rounded-xl text-base w-full h-[30px] outline-none resize-none"
               placeholder="게시물검색"
               value={inputValue}
+              spellcheck="false"
               onChange={(e) => setInputValue(e.target.value)}
+              onKeyPress={handleOnKeyPress}
             />
-            <button onClick={() => {
-              sessionStorage.setItem("search", inputValue);
-              navigate(`/SearchCommunityPost`);
-            }}
-              className="text-gray-800 w-[50px] text-lg">검색</button>
+            <button
+              onClick={handleOnClick}
+              className="text-gray-800 w-[50px] text-lg"
+            >
+              검색
+            </button>
           </div>
           <button onClick={e => setDropdown(!dropdown)} className="md:hidden lg:hidden">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10">
               <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
             </svg>
             {dropdown ? <div className="hidden" />
-              : <div className="absolute right-1 z-50 w-[100px]  border-2 border-gray-400 rounded-2xl p-2 mt-2 mr-2 bg-purple-50">
+              : <div className="absolute right-1 z-50 w-[140px] border-2 border-gray-400 rounded-2xl p-2 mt-2 mr-2 bg-purple-50">
                 {loginState ? (
-                  <div className="flex">
+                  <div className="">
                     <Link
                       to="/MyPage"
-                      className={`flex justify-end mr-2 hover:font-cookie ${location.pathname === `/MyPage`
-                        ? "font-cookie border-b-2 border-black"
+                      className={`text-center hover:font-cookie ${location.pathname === `/MyPage`
+                        ? "font-cookie "
                         : ""
                         }`}
                     >
                       마이페이지
                     </Link>
                     <button
-                      className="pl-2 hover:font-cookie border-l-2 border-l-black"
+                      className="text-center hover:font-cookie "
                       onClick={LogOut}
                     >
                       로그아웃
@@ -222,12 +240,12 @@ const Layout = (props) => {
       </div>
 
       <div id="전체 컴포넌트" className="pt-[30px] flex-1">
-        <div className="px-[18%] py-10 sm:px-[10%] md:px-[8%]">{props.children}</div>
+        <div className="px-[12%] py-10 sm:px-[10%] md:px-[8%]">{props.children}</div>
       </div>
 
       <div id="하단 사이트 정보" className="sticky top-[100vh]">
         <div className="bg-gray-100 py-2">
-          <div className="flex flex-wrap justify-between max-w-screen-xl mx-auto px-4 sm:px-6 text-gray-800">
+          <div className="flex flex-wrap justify-around max-w-screen-xl mx-auto px-4 sm:px-6 text-gray-800">
             <div className="p-5">
               <div className="text-xs uppercase text-gray-500 font-medium">
                 Home

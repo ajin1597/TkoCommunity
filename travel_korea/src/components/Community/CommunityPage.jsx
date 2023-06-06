@@ -19,7 +19,7 @@ const CommunityPage = () => {
   const url = process.env.REACT_APP_API_URL
 
 
-  const a = [1, 2, 3, 4, 5, 6, 7, 8] //test
+  // const a = [1, 2, 3, 4, 5, 6, 7, 8] //test
 
   useEffect(() => {
     //전체 데이터 갯수
@@ -58,13 +58,13 @@ const CommunityPage = () => {
               <Link to={`/CommuWriting`} className="flex justify-center items-center rounded-lg border-2 text-gray-50 bg-green-400 w-20 h-14 mt-4 hover:bg-green-500">글쓰기</Link>
             </div>
 
-            <div id="커뮤니티 게시물 포멧" className="flex flex-wrap justify-between md:justify-around">
-              {a.map((commu, idx) => {
+            <div id="커뮤니티 게시물 포멧" className="flex flex-wrap justify-evenly md:justify-around">
+              {commuData.map((commu, idx) => {
                 return (
-                  <div key={idx} className="m-4 w-[300px] sm:w-[500px]">
+                  <div key={idx} className="m-4 w-[320px] sm:w-[500px]">
                     <nav>
                       <ul>
-                        <li className="p-2 h-[260px] sm:h-[280px] shadow-xl bg-white border-gray-300 border-2 rounded-2xl">
+                        <li className="p-2 h-[280px] sm:h-[300px] shadow-xl bg-white border-gray-300 border-2 rounded-2xl">
                           <Link to={`/SingleCommuPage/${commu.num}`}>
                             <div className="flex justify-between items-center">
                               <div className="ml-3 mb-2 flex justify-start items-center">
@@ -73,7 +73,7 @@ const CommunityPage = () => {
                               </div>
                               <div id="작성시간" className="flex justify-center text-sm w-[95px] text-center">{commu.date}</div>
                             </div>
-                            <div id="게시글이미지" className={`flex justify-center rounded-2xl mb-1 items-center h-[120px] sm:h-[140px] scale-100 hover:scale-105 transition-all duration-500 cursor-pointer`}>
+                            <div id="게시글이미지" className={`flex justify-center rounded-2xl mb-1 items-center h-[140px] sm:h-[160px] scale-100 hover:scale-105 transition-all duration-500 cursor-pointer`}>
                               <img className="w-full h-full rounded-2xl" src={`${commu.image}`}></img>
                             </div>
                             <div id="제목글" className=" text-lg font-cookie truncate">{commu.title}</div>

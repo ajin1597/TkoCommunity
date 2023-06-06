@@ -12,7 +12,7 @@ const NoticeWriting = () => {
   useEffect(() => {
     if (!CheckLogin()) {
       alert("로그인 후 글 작성이 가능합니다.");
-      localStorage.setItem("pathName", location.pathname);
+      sessionStorage.setItem("pathName", location.pathname);
       window.location.replace("/login");
     }
   }, []);
@@ -54,22 +54,24 @@ const NoticeWriting = () => {
             className="space-y-3"
             onSubmit={handleFormSubmit}
           >
-           
+
             {/* 제목 */}
             <input
               type="text"
-              className="py-2 px-4 rounded-xl bg-green-200 w-full"
+              className="py-2 px-4 rounded-xl bg-green-200 w-full outline-none resize-none"
               placeholder="제목을 입력해주세요."
               value={inputTitle}
+              spellcheck="false"
               onChange={(e) => setInputTitle(e.target.value)}
             />
 
             {/* 본문 */}
             <textarea
               type="text"
-              className="py-2 px-4 rounded-xl bg-blue-200 w-full h-[500px]"
+              className="py-2 px-4 rounded-xl bg-blue-200 w-full h-[500px] outline-none resize-none"
               placeholder="Type a message..."
               value={inputValue}
+              
               onChange={(e) => setInputValue(e.target.value)}
             />
 
