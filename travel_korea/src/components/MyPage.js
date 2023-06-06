@@ -24,9 +24,7 @@ function MyPage() {
   const [listCount, setListCount] = useState(100);
   const [profileList, setProfileList] = useState({});
   const [postList, setPostList] = useState([]);
-
   const [count, setCount] = useState(0);
-
 
   // 카카오 정보 받아오기
   useEffect(() => {
@@ -98,9 +96,9 @@ function MyPage() {
                                     <li className="flex  my-2 items-center">
                                       <Link
                                         to={`/SingleNoticPage/${postList.num}`}
-                                        className="w-[50%] flex justify-center"
+                                        className="w-[50%] "
                                       >
-                                        <div id="제목글">{postList.title}</div>
+                                        <div id="제목글" className="ml-2 truncate " >{postList.title}</div>
                                       </Link>
                                       <div
                                         id="작성시간"

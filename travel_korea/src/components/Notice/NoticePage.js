@@ -4,6 +4,7 @@ import Paging from "../Pagination/Paging";
 import { useEffect, useState } from "react";
 
 const NoticePage = () => {
+  const url = process.env.REACT_APP_API_URL
   const navigate = useNavigate();
   const { page } = useParams(); // 현제 페이지, 파라미터값
   const handlePageChange = (page) => { navigate(`/NoticePage/${page}`); }; // 페이지헨들러 함수
@@ -14,7 +15,6 @@ const NoticePage = () => {
   const [userKey, setUserKey] = useState(); // 관리자, 일반회원 구분
 
 
-  const url = process.env.REACT_APP_API_URL
 
   useEffect(() => {
     //전체 데이터 갯수
@@ -82,10 +82,10 @@ const NoticePage = () => {
                       <ul>
                         <li>
                           <Link to={`/SingleNoticPage/${notic.num}`} className="flex py-2 text-base border-b-2 border-gray-200">
-                            <div id="게시물번호" className=" bg-white w-[10%] flex justify-center">{notic.num}</div>
-                            <div id="제목글" className=" bg-white w-[50%] flex pl-4 justify-start">{notic.title}</div>
-                            <div id="작성자" className=" bg-white w-[15%] flex justify-center">관리자</div>
-                            <div id="작성시간" className=" bg-white w-[25%] flex justify-center">{notic.date}</div>
+                            <div id="게시물번호" className=" bg-white w-[10%] text-center ">{notic.num}</div>
+                            <div id="제목글" className=" bg-white w-[50%] pl-4 text-start truncate">{notic.title}</div>
+                            <div id="작성자" className=" bg-white w-[15%] text-center">관리자</div>
+                            <div id="작성시간" className=" bg-white w-[25%] text-center ">{notic.date}</div>
                           </Link>
                         </li>
                       </ul>

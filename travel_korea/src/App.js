@@ -47,7 +47,7 @@ function App() {
     <>
       <Layout>
         <div id="전체 레이이웃">
-          <div className="flex justify-center  bg-white h-[500px]">
+          <div className="flex justify-center bg-white h-[500px] sm:h-[250px] sm:mt-10">
             <img
               src={imageSources[currentImageIndex]}
               alt="광고 이미지"
