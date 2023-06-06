@@ -109,7 +109,7 @@ function MyPage() {
                                       </Link>
                                       <div
                                         id="작성시간"
-                                        className="w-[50%] flex justify-center"
+                                        className="w-[50%] sm:text-center flex justify-center"
                                       >
                                         {postList.date}
                                       </div>

@@ -59,7 +59,7 @@ const ChatGptPage = () => {
     <>
       <Layout>
         <div className="flex justify-center mt-20">
-          <div className="chatbot-container bg-white rounded-lg shadow-lg w-full max-w-lg">
+          <div className="chatbot-container bg-white rounded-lg shadow-lg w-[70%] sm:w-full">
             <div className="chatbot-header py-3 px-4 bg-green-700 text-white rounded-t-lg">
               <h2 className="text-lg font-bold">챗봇검색</h2>
             </div>

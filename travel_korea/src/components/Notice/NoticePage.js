@@ -4,7 +4,6 @@ import Paging from "../Pagination/Paging";
 import { useEffect, useState } from "react";
 
 const NoticePage = () => {
-  const url = process.env.REACT_APP_API_URL
   const navigate = useNavigate();
   const { page } = useParams(); // 현제 페이지, 파라미터값
   const handlePageChange = (page) => { navigate(`/NoticePage/${page}`); }; // 페이지헨들러 함수
@@ -15,6 +14,7 @@ const NoticePage = () => {
   const [userKey, setUserKey] = useState(); // 관리자, 일반회원 구분
 
 
+  const url = process.env.REACT_APP_API_URL
 
   useEffect(() => {
     //전체 데이터 갯수
@@ -28,9 +28,10 @@ const NoticePage = () => {
   useEffect(() => {
     // 해당 페이지 번호의 데이터 , 페이지가 선택될때마다 랜더링
 
-    const formData = new FormData();
     // 사용자 식별
-    formData.append("token", localStorage.getItem("token"));
+    const token = localStorage.getItem("token");
+    const formData = new FormData();
+    if (token) formData.append("token", token);
 
     fetch(`${url}/api/notice/${page}`, {
       method: "POST",

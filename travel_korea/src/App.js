@@ -70,7 +70,7 @@ function App() {
                         className="card-img-top rounded-xl h-[170px] w-full"
                       />
                       <div className="card-body">
-                        <h5 className="card-title h-[50px] line-clamp-2 truncate">{post.title}</h5>
+                        <h5 className="card-title h-[50px] break-all line-clamp-2 text-ellipsis">{post.title}</h5>
                         <hr />
                         <p className="card-text">{post.writer}</p>
                         <hr />
