@@ -245,7 +245,7 @@ const Layout = (props) => {
 
       <div id="하단 사이트 정보" className="sticky top-[100vh]">
         <div className="bg-gray-100 py-2">
-          <div className="flex flex-wrap justify-around max-w-screen-xl mx-auto px-4 sm:px-6 text-gray-800">
+          <div className="flex flex-wrap justify-around max-w-screen-xl mx-auto px-4 sm:justify-between sm:px-6 text-gray-800">
             <div className="p-5">
               <div className="text-xs uppercase text-gray-500 font-medium">
                 Home
