@@ -57,8 +57,8 @@ const SingleCommuPage = () => {
               <img className="h-full w-full object-center rounded-2xl" src={`${currentPost.image}`}></img>
             </div>
             <div className="flex justify-between items-center border-b-2 border-black">
-              <div>
-                <div className="text-3xl mb-8 ">{currentPost.title}</div>
+              <div className="w-[75%]">
+                <div className="  break-all text-3xl mb-8 ">{currentPost.title}</div>
                 <div className="pr-2 ">{currentPost.date}</div>
               </div>
               <div className="flex items-center mr-5">
