@@ -7,8 +7,12 @@ import Paging from "./Pagination/Paging";
 function MyPage() {
   const url = process.env.REACT_APP_API_URL;
   let location = useLocation();
-
   const [page, setPage] = useState(1);
+  const [pageItemsCountPer] = useState(10);
+  const [pageRangeDisplayed] = useState(5);
+  const [profileList, setProfileList] = useState();
+  const [postList, setPostList] = useState([]);
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
     if (!CheckLogin()) {
@@ -21,12 +25,6 @@ function MyPage() {
   const handlePageChange = (page) => {
     setPage(page);
   };
-
-  const [pageItemsCountPer] = useState(10);
-  const [pageRangeDisplayed] = useState(5);
-  const [profileList, setProfileList] = useState();
-  const [postList, setPostList] = useState([]);
-  const [count, setCount] = useState(0);
 
   // 카카오 정보 받아오기
   useEffect(() => {

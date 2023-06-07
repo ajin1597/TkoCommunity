@@ -37,9 +37,6 @@ const SingleCommuPage = () => {
     fetch(`${url}/api/communityDetail/${postNum}`)
       .then((res) => res.json())
       .then((json) => {
-        console.log(json.post[0].page);
-        console.log(json);
-
         setSearchPageNum(parseInt(json.post[0].page / 12 + 1));
         setCurrentPost(json.post[0]);
         setPostComment(json.comment);
@@ -58,7 +55,7 @@ const SingleCommuPage = () => {
               <img
                 className="h-full w-full object-center rounded-2xl"
                 src={`${currentPost.image}`}
-              ></img>
+              ></img> 
             </div>
             <div className="flex justify-between items-center border-b-2 border-black">
               <div>

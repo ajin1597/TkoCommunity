@@ -12,9 +12,7 @@ const Layout = (props) => {
   const [inputValue, setInputValue] = useState(""); // 내용
   const [dropdown, setDropdown] = useState(true);
 
-
   const handleFormSubmit = (e) => {
-
     const formData = new FormData();
     formData.append("contents", inputValue);
 

@@ -4,11 +4,10 @@ import Layout from "../../Layout/Layout";
 
 const SingNoticPage = () => {
   const navigate = useNavigate();
+  const url = process.env.REACT_APP_API_URL;
   const { postNum } = useParams();
   const [currentPost, setCurrentPost] = useState(); // 현재게시물
   const [searchPageNum, setSearchPageNum] = useState();
-
-  const url = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     fetch(`${url}/api/noticeDetail/${postNum}`)

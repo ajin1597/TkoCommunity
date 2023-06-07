@@ -5,8 +5,9 @@ import CheckLogin from "../../util/CheckLogin";
 
 const NoticeWriting = () => {
   let location = useLocation();
-
   const url = process.env.REACT_APP_API_URL;
+  const [inputTitle, setInputTitle] = useState(""); // 제목
+  const [inputValue, setInputValue] = useState(""); // 내용
 
   // 로그인 상태 확인
   useEffect(() => {
@@ -16,9 +17,6 @@ const NoticeWriting = () => {
       window.location.replace("/login");
     }
   }, []);
-
-  const [inputTitle, setInputTitle] = useState(""); // 제목
-  const [inputValue, setInputValue] = useState(""); // 내용
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -54,7 +52,6 @@ const NoticeWriting = () => {
             className="space-y-3"
             onSubmit={handleFormSubmit}
           >
-
             {/* 제목 */}
             <input
               type="text"
@@ -64,7 +61,6 @@ const NoticeWriting = () => {
               spellcheck="false"
               onChange={(e) => setInputTitle(e.target.value)}
             />
-
             {/* 본문 */}
             <textarea
               type="text"
@@ -74,7 +70,6 @@ const NoticeWriting = () => {
               
               onChange={(e) => setInputValue(e.target.value)}
             />
-
             {/* 작성 버튼 */}
             <div className="flex justify-end">
               <button

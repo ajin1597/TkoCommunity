@@ -14,22 +14,18 @@ const SearchCommunityPost = () => {
   const [listCount, setListCount] = useState(); // 보여줄 리스트
   const [pageItemsCountPer] = useState(10); // 페이지 내부 리스트 갯수
   const [pageRangeDisplayed] = useState(5); // paginator에서 보여줄 페이지 범위
-
   const loginState = LoginCheck.CheckLogin();
   const url = process.env.REACT_APP_API_URL
-
   const item = sessionStorage.getItem("search");
 
   useEffect(() => {
     // 해당 페이지 번호의 데이터 , 페이지가 선택될때마다 랜더링
     const formData = new FormData();
-    console.log(item)
     formData.append("contents", item);
 
     fetch(`${url}/api/community/search`, { method: "POST", body: formData, })
       .then((res) => res.json())
       .then((json) => {
-        console.log(json);
         setCommuData(json);
         setListCount(json.length)
       });

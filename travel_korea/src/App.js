@@ -1,24 +1,19 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import Layout from "./Layout/Layout";
-
 import { Link, useNavigate } from "react-router-dom";
-
 import image1 from "./assets/images/성산일출봉.jpg";
 import image2 from "./assets/images/남산타워.jpg";
 import image3 from "./assets/images/황리단길.jpg";
 
 function App() {
   const navigater = useNavigate();
-
+  const url = process.env.REACT_APP_API_URL;
   const [noticList, setNoticeList] = useState([]);
   const [communityList, setCommunityList] = useState([]);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
   const num = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   const imageSources = [image1, image2, image3];
-
-  const url = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     fetch(`${url}/api/main`)

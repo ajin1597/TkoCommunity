@@ -14,12 +14,8 @@ const CommunityPage = () => {
   const [listCount, setListCount] = useState(); // 보여줄 리스트
   const [pageItemsCountPer] = useState(10); // 페이지 내부 리스트 갯수
   const [pageRangeDisplayed] = useState(5); // paginator에서 보여줄 페이지 범위
-
   const loginState = LoginCheck.CheckLogin();
   const url = process.env.REACT_APP_API_URL
-
-
-  // const a = [1, 2, 3, 4, 5, 6, 7, 8] //test
 
   useEffect(() => {
     //전체 데이터 갯수

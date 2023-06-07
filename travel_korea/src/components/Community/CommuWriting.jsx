@@ -6,11 +6,12 @@ const CommuWriting = () => {
   let location = useLocation();
   const imageInput = useRef();
   const ref = useRef();
-
-
   const url = process.env.REACT_APP_API_URL;
+  const [inputTitle, setInputTitle] = useState(""); // 제목
+  const [inputValue, setInputValue] = useState(""); // 내용
+  const [inputImage, setInputImage] = useState(); // 사진
+  const [imageSrc, setImageSrc] = useState("");
 
-  // console.log(CheckLogin());
   // 로그인 상태 확인
   useEffect(() => {
     if (!CheckLogin()) {
@@ -19,11 +20,6 @@ const CommuWriting = () => {
       window.location.replace("/login");
     }
   }, []);
-
-  const [inputTitle, setInputTitle] = useState(""); // 제목
-  const [inputValue, setInputValue] = useState(""); // 내용
-  const [inputImage, setInputImage] = useState(); // 사진
-  const [imageSrc, setImageSrc] = useState("");
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -70,7 +66,6 @@ const CommuWriting = () => {
     return new Promise((resolve) => {
       reader.onload = () => {
         setImageSrc(reader.result);
-
         resolve();
       };
     });
